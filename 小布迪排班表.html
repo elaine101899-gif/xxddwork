@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小布迪音樂藝術托嬰中心 排班表</title>
+<style>
+  :root{
+    --ink:#2b3a3a;
+    --paper:#fbf8f2;
+    --line:#d8cfbd;
+    --teal:#3d6b64;
+    --teal-dark:#294b46;
+    --clay:#c66b4a;
+    --ok:#3d7a4a;
+    --ok-bg:#e6f2e6;
+    --warn:#b8862f;
+    --warn-bg:#faf1de;
+    --over:#b8433a;
+    --over-bg:#fbe8e5;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    padding:24px 16px 60px;
+  }
+  header{
+    max-width:1180px;
+    margin:0 auto 18px;
+    border-bottom:3px solid var(--teal-dark);
+    padding-bottom:14px;
+  }
+  header h1{
+    margin:0 0 4px;
+    font-size:22px;
+    letter-spacing:1px;
+    color:var(--teal-dark);
+  }
+  header .sub{
+    font-size:13px;
+    color:#6b6357;
+  }
+  .month-row{
+    max-width:1180px;
+    margin:0 auto 14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .month-row label{font-size:14px;color:#6b6357;}
+  #monthInput{
+    font-size:16px;
+    font-weight:700;
+    padding:6px 10px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:#fff;
+    color:var(--teal-dark);
+    width:160px;
+  }
+  .toolbar{
+    max-width:1180px;
+    margin:0 auto 14px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  button{
+    font-family:inherit;
+    cursor:pointer;
+    border-radius:6px;
+    border:1px solid var(--teal);
+    background:#fff;
+    color:var(--teal-dark);
+    padding:8px 14px;
+    font-size:13px;
+  }
+  button.primary{background:var(--teal);color:#fff;}
+  button.danger{border-color:var(--over);color:var(--over);}
+  button:hover{opacity:0.85;}
+  .legend{
+    max-width:1180px;
+    margin:0 auto 14px;
+    font-size:12.5px;
+    color:#6b6357;
+    background:#f2ece0;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:10px 14px;
+    line-height:1.7;
+  }
+  .legend b{color:var(--teal-dark);}
+  .table-wrap{
+    max-width:1180px;
+    margin:0 auto;
+    overflow-x:auto;
+    border:1px solid var(--line);
+    border-radius:10px;
+    background:#fff;
+  }
+  table{
+    border-collapse:collapse;
+    width:100%;
+    min-width:960px;
+  }
+  th, td{
+    border:1px solid var(--line);
+    padding:8px;
+    vertical-align:top;
+    font-size:13.5px;
+  }
+  th{
+    background:var(--teal-dark);
+    color:#fff;
+    font-weight:600;
+    text-align:center;
+    position:sticky;
+    top:0;
+  }
+  th .shift-time{display:block;font-weight:400;font-size:12px;opacity:0.9;}
+  td.date-cell{
+    width:120px;
+    text-align:center;
+    font-weight:700;
+    background:#faf6ec;
+  }
+  .date-range-input{
+    width:100%;
+    border:1px solid transparent;
+    background:transparent;
+    text-align:center;
+    font-weight:700;
+    font-size:13.5px;
+    color:var(--teal-dark);
+    padding:4px;
+    border-radius:4px;
+  }
+  .date-range-input:hover, .date-range-input:focus{
+    border-color:var(--line);
+    background:#fff;
+  }
+  td.shift-cell{width:200px;}
+  .count-badge{
+    display:inline-block;
+    font-size:11.5px;
+    font-weight:700;
+    padding:2px 8px;
+    border-radius:10px;
+    margin-bottom:6px;
+  }
+  .count-ok{background:var(--ok-bg);color:var(--ok);}
+  .count-under{background:var(--warn-bg);color:var(--warn);}
+  .count-over{background:var(--over-bg);color:var(--over);}
+  .pill-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px;}
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    padding:3px 8px;
+    border-radius:12px;
+    font-size:12.5px;
+    background:#eef3f1;
+    border:1px solid #cfe0da;
+    color:var(--teal-dark);
+  }
+  .pill.fixed{
+    background:#e9e1cf;
+    border-color:#d8cfae;
+    color:#6b5a2e;
+  }
+  .pill .rm{
+    cursor:pointer;
+    font-weight:700;
+    color:var(--over);
+    padding:0 2px;
+  }
+  select.add-select{
+    width:100%;
+    font-size:12.5px;
+    padding:4px;
+    border:1px dashed var(--teal);
+    border-radius:6px;
+    color:var(--teal-dark);
+    background:#fff;
+  }
+  tr.idle-row td{
+    background:#f7f3ea;
+    color:#8a8171;
+    font-size:12px;
+    font-style:italic;
+    text-align:left;
+    padding:6px 10px;
+  }
+  td.del-cell{width:60px;text-align:center;}
+  @media print{
+    .toolbar, .legend, .no-print, .month-row .add-select, select.add-select, .pill .rm, td.del-cell{display:none !important;}
+    body{padding:0;background:#fff;}
+    .table-wrap{border:none;}
+    th{background:#eee !important;color:#000 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>小布迪音樂藝術托嬰中心</h1>
+  <div class="sub">每週排班表 · 四班別輪值</div>
+</header>
+
+<div class="month-row">
+  <label for="monthInput">月份：</label>
+  <input id="monthInput" type="text" value="115年08月">
+</div>
+
+<div class="toolbar no-print">
+  <button class="primary" id="btnAddWeek">＋ 新增週次</button>
+  <button id="btnPrint">🖨 列印 / 匯出</button>
+  <button class="danger" id="btnClear">清空全部排班</button>
+</div>
+
+<div class="legend no-print">
+  固定班別：<b>7:15-8:00</b>（需2人，固定：季涵）　<b>7:45-17:15</b>（需2人，固定：筠蓉）　
+  <b>8:00-17:30</b>（需7人，固定：佩樺）　<b>8:30-18:00</b>（需2人，由婉寧、華家、欣萍三人輪流，每週選2人值班）<br>
+  灰底人名為固定班別，無法移除；其餘班別請用下拉選單新增人員（同一週同一人不會重複出現在別班）。晚值未輪到的那位可安排到其他班別支援。
+</div>
+
+<div class="table-wrap">
+  <table id="scheduleTable">
+    <thead>
+      <tr>
+        <th style="width:120px;">日期</th>
+        <th>7:15-8:00<span class="shift-time">需求 2 人</span></th>
+        <th>7:45-17:15<span class="shift-time">需求 2 人</span></th>
+        <th>8:00-17:30<span class="shift-time">需求 7 人</span></th>
+        <th>8:30-18:00<span class="shift-time">需求 2 人（婉寧/華家/欣萍輪流）</span></th>
+        <th class="no-print" style="width:60px;">刪除</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</div>
+
+<script>
+(function(){
+  var STORAGE_KEY = 'xiaobudi_schedule_v1';
+
+  var SHIFTS = [
+    { id:'s1', label:'7:15-8:00',  need:2, fixed:['季涵'] },
+    { id:'s2', label:'7:45-17:15', need:2, fixed:['筠蓉'] },
+    { id:'s3', label:'8:00-17:30', need:7, fixed:['佩樺'] },
+    { id:'s4', label:'8:30-18:00', need:2, fixed:[], restrictTo:['婉寧','華家','欣萍'] }
+  ];
+
+  var STAFF_ALL = ['佩樺','雯捷','季涵','欣萍','亞柔','苡綸','巧芳','妍妍','筠蓉','華家','楷倫','珮如','婉寧'];
+
+  function defaultState(){
+    return {
+      month: '115年08月',
+      weeks: [
+        { range:'08/03-08/07', assign:{ s1:[], s2:[], s3:[], s4:[] } },
+        { range:'08/10-08/14', assign:{ s1:[], s2:[], s3:[], s4:[] } },
+        { range:'08/17-08/21', assign:{ s1:[], s2:[], s3:[], s4:[] } },
+        { range:'08/24-08/28', assign:{ s1:[], s2:[], s3:[], s4:[] } },
+        { range:'08/31-09/04', assign:{ s1:[], s2:[], s3:[], s4:[] } }
+      ]
+    };
+  }
+
+  var state = null;
+
+  function loadState(){
+    var raw = null;
+    try{ raw = localStorage.getItem(STORAGE_KEY); }catch(e){ raw = null; }
+    if(raw){
+      try{
+        var parsed = JSON.parse(raw);
+        if(parsed && parsed.weeks){ return parsed; }
+      }catch(e2){}
+    }
+    return defaultState();
+  }
+
+  function saveState(){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+  }
+
+  function getShiftById(id){
+    var i;
+    for(i=0;i<SHIFTS.length;i++){
+      if(SHIFTS[i].id === id){ return SHIFTS[i]; }
+    }
+    return null;
+  }
+
+  // names already used anywhere in this week (fixed of all shifts + assigned extras)
+  function usedNamesInWeek(week){
+    var used = {};
+    var i, j;
+    for(i=0;i<SHIFTS.length;i++){
+      var sh = SHIFTS[i];
+      for(j=0;j<sh.fixed.length;j++){ used[sh.fixed[j]] = true; }
+      var arr = week.assign[sh.id] || [];
+      for(j=0;j<arr.length;j++){ used[arr[j]] = true; }
+    }
+    return used;
+  }
+
+  function escapeHtml(str){
+    return String(str)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
+
+  function renderTable(){
+    var tbody = document.getElementById('tableBody');
+    var html = '';
+    var wi;
+    for(wi=0; wi<state.weeks.length; wi++){
+      var week = state.weeks[wi];
+      html += '<tr data-week="' + wi + '">';
+      html += '<td class="date-cell"><input class="date-range-input" data-week="' + wi + '" data-field="range" value="' + escapeHtml(week.range) + '"></td>';
+
+      var si;
+      for(si=0; si<SHIFTS.length; si++){
+        var sh = SHIFTS[si];
+        var extra = week.assign[sh.id] || [];
+        var totalCount = sh.fixed.length + extra.length;
+        var badgeClass = 'count-ok';
+        if(totalCount < sh.need){ badgeClass = 'count-under'; }
+        else if(totalCount > sh.need){ badgeClass = 'count-over'; }
+
+        html += '<td class="shift-cell">';
+        html += '<span class="count-badge ' + badgeClass + '">已排 ' + totalCount + ' / 需 ' + sh.need + '</span>';
+        html += '<div class="pill-row">';
+
+        var fi;
+        for(fi=0; fi<sh.fixed.length; fi++){
+          html += '<span class="pill fixed">🔒 ' + escapeHtml(sh.fixed[fi]) + '</span>';
+        }
+        var ei;
+        for(ei=0; ei<extra.length; ei++){
+          html += '<span class="pill">' + escapeHtml(extra[ei]) +
+                  ' <span class="rm" data-action="removeStaff" data-week="' + wi + '" data-shift="' + sh.id + '" data-name="' + escapeHtml(extra[ei]) + '">×</span></span>';
+        }
+        html += '</div>';
+
+        // build available options: staff not already used anywhere this week
+        var used = usedNamesInWeek(week);
+        var candidatePool = sh.restrictTo ? sh.restrictTo : STAFF_ALL;
+        var options = '<option value="">＋ 新增人員</option>';
+        var oi;
+        for(oi=0; oi<candidatePool.length; oi++){
+          var name = candidatePool[oi];
+          if(!used[name]){
+            options += '<option value="' + escapeHtml(name) + '">' + escapeHtml(name) + '</option>';
+          }
+        }
+        html += '<select class="add-select" data-week="' + wi + '" data-shift="' + sh.id + '" data-action="addStaff">' + options + '</select>';
+        html += '</td>';
+      }
+
+      html += '<td class="del-cell no-print"><button class="danger" data-action="delWeek" data-week="' + wi + '">刪除</button></td>';
+      html += '</tr>';
+
+      // idle row: staff not scheduled anywhere this week
+      var usedFinal = usedNamesInWeek(week);
+      var idle = [];
+      var ii;
+      for(ii=0; ii<STAFF_ALL.length; ii++){
+        if(!usedFinal[STAFF_ALL[ii]]){ idle.push(STAFF_ALL[ii]); }
+      }
+      if(idle.length > 0){
+        html += '<tr class="idle-row"><td colspan="6">本週未排班：' + escapeHtml(idle.join('、')) + '</td></tr>';
+      }
+    }
+    tbody.innerHTML = html;
+  }
+
+  function addStaff(weekIndex, shiftId, name){
+    if(!name){ return; }
+    var week = state.weeks[weekIndex];
+    if(!week.assign[shiftId]){ week.assign[shiftId] = []; }
+    week.assign[shiftId].push(name);
+    saveState();
+    renderTable();
+  }
+
+  function removeStaff(weekIndex, shiftId, name){
+    var week = state.weeks[weekIndex];
+    var arr = week.assign[shiftId] || [];
+    var idx = arr.indexOf(name);
+    if(idx > -1){ arr.splice(idx,1); }
+    saveState();
+    renderTable();
+  }
+
+  function addWeek(){
+    state.weeks.push({ range:'', assign:{ s1:[], s2:[], s3:[], s4:[] } });
+    saveState();
+    renderTable();
+  }
+
+  function deleteWeek(weekIndex){
+    if(!confirm('確定要刪除這一週的排班嗎？')){ return; }
+    state.weeks.splice(weekIndex,1);
+    saveState();
+    renderTable();
+  }
+
+  function clearAll(){
+    if(!confirm('確定要清空全部排班內容嗎？此動作無法復原。')){ return; }
+    state = defaultState();
+    state.month = document.getElementById('monthInput').value || state.month;
+    saveState();
+    renderTable();
+  }
+
+  function init(){
+    state = loadState();
+    document.getElementById('monthInput').value = state.month || '115年08月';
+    renderTable();
+
+    document.getElementById('monthInput').addEventListener('input', function(e){
+      state.month = e.target.value;
+      saveState();
+    });
+
+    document.getElementById('btnAddWeek').addEventListener('click', addWeek);
+    document.getElementById('btnPrint').addEventListener('click', function(){ window.print(); });
+    document.getElementById('btnClear').addEventListener('click', clearAll);
+
+    var tbody = document.getElementById('tableBody');
+
+    // event delegation for date-range input changes
+    tbody.addEventListener('input', function(e){
+      var target = e.target;
+      if(target.classList.contains('date-range-input')){
+        var wi = parseInt(target.getAttribute('data-week'), 10);
+        state.weeks[wi].range = target.value;
+        saveState();
+      }
+    });
+
+    // event delegation for click actions (remove staff / delete week)
+    tbody.addEventListener('click', function(e){
+      var target = e.target;
+      var action = target.getAttribute('data-action');
+      if(action === 'removeStaff'){
+        var wi1 = parseInt(target.getAttribute('data-week'), 10);
+        var shiftId1 = target.getAttribute('data-shift');
+        var name1 = target.getAttribute('data-name');
+        removeStaff(wi1, shiftId1, name1);
+      } else if(action === 'delWeek'){
+        var wi2 = parseInt(target.getAttribute('data-week'), 10);
+        deleteWeek(wi2);
+      }
+    });
+
+    // event delegation for add-staff select change
+    tbody.addEventListener('change', function(e){
+      var target = e.target;
+      if(target.getAttribute('data-action') === 'addStaff'){
+        var wi3 = parseInt(target.getAttribute('data-week'), 10);
+        var shiftId3 = target.getAttribute('data-shift');
+        var name3 = target.value;
+        addStaff(wi3, shiftId3, name3);
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+
+</body>
+</html>
