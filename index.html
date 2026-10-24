@@ -10,7 +10,7 @@
 <script>
 /* 強制瀏覽器載入最新版：把版本號加進 URL */
 (function(){
-  var BUILD='20261024084900';
+  var BUILD='20261024095000';
   if(!BUILD||BUILD.indexOf('BUILD_TS')>-1)return;
   /* 網址如果帶 #hash（例如隱藏的登入試用頁 #logintest），一定要先把 hash
      切掉再接 ?_v=，不然 ?_v= 會被瀏覽器當成 hash 的一部分（不是真正的查詢
@@ -24,7 +24,6 @@
 </script>
 <title>邦迪小宇宙</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -34,19 +33,6 @@ body{font-family:'Noto Sans TC',sans-serif;background:#fdf8ee;min-height:100vh;}
 .pg{display:none;}
 .pg.on{display:block;}
 
-/* ── 小鎮招牌字：只套在「標題/卡片名」這類元素上，密集資料／表單／按鈕一律維持
-   原本的 Noto Sans TC，避免可愛字體拖累可讀性。var(--font-display) 在 :root
-   （PLANNER 區塊）另有宣告，這裡先用字面值是因為此區塊早於 :root 出現，
-   但瀏覽器解析自訂屬性不看原始碼先後順序，所以仍吃得到同一份字體設定。 */
-.btitle,.hero-name,.hcard-title,.cards-lbl,
-.teach-panel-header h2,.asr-header h2,.theme-name,.tname,.class-head,
-.materials-box h3,.form-header-title h3,.pin-box h3,.week-badge .wn,
-.asr-section-title,.asr-section-hd span,.notice-box strong,.form-act-name,
-.asr-teacher-name,.asr-child-name,.asr-pname,.yr-tab,.week-theme-ln,
-.pv-rec-name{
-  font-family:var(--font-display),'ZCOOL KuaiLe','PingFang TC','Microsoft JhengHei',sans-serif;
-  letter-spacing:.5px;
-}
 
 /* ── HOME HERO ── */
 .hero{
@@ -107,7 +93,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:#fdf8ee;min-height:100vh;}
   border:3px solid var(--city-wood);border-radius:28px 24px 30px 22px;
   box-shadow:0 5px 0 rgba(107,66,38,.15);
 }
-.cards-lbl{font-family:var(--font-display);font-size:.8rem;font-weight:400;color:var(--city-wood);text-transform:uppercase;letter-spacing:2px;text-align:center;margin-bottom:18px;}
+.cards-lbl{font-size:.8rem;font-weight:700;color:var(--city-wood);text-transform:uppercase;letter-spacing:2px;text-align:center;margin-bottom:18px;}
 .cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 12px;}
 @media(min-width:560px){.cards-grid{grid-template-columns:repeat(3,1fr);}}
 .hcard{
@@ -135,7 +121,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:#fdf8ee;min-height:100vh;}
 .hcard-img img,.hcard-img svg{width:32px;height:32px;object-fit:contain;}
 .hcard-body{flex:1;display:flex;flex-direction:column;align-items:center;min-width:0;}
 .hcard-lbl{font-family:'Baloo 2','Noto Sans TC',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;}
-.hcard-title{font-family:var(--font-display);font-size:.9rem;font-weight:400;color:var(--navy);margin-bottom:3px;line-height:1.35;}
+.hcard-title{font-size:1.05rem;font-weight:900;color:var(--navy);margin-bottom:3px;line-height:1.35;}
 .hcard-desc{
   font-size:.64rem;color:#8a8a9a;line-height:1.35;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
@@ -199,7 +185,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:#fdf8ee;min-height:100vh;}
 .comp-card-logo img{width:56px;height:56px;object-fit:contain;}
 .comp-card-body{flex:1;min-width:0;}
 .comp-card-eyebrow{font-family:'Baloo 2','Noto Sans TC',sans-serif;font-size:.66rem;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;opacity:.7;margin-bottom:3px;}
-.comp-card-title{font-family:var(--font-display);font-size:1.22rem;font-weight:900;color:#2d3057;margin-bottom:3px;letter-spacing:1px;}
+.comp-card-title{font-family:'Noto Sans TC',sans-serif;font-size:1.22rem;font-weight:900;color:#2d3057;margin-bottom:3px;letter-spacing:1px;}
 .comp-card-desc{font-size:.76rem;color:#6a6a78;}
 .comp-card-arr{font-size:1.5rem;color:rgba(0,0,0,.2);flex-shrink:0;transition:transform .2s;}
 @media (hover:hover){.comp-card:hover .comp-card-arr{transform:translateX(4px);}}
@@ -334,7 +320,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:#fdf8ee;min-height:100vh;}
   --city-grass:    var(--teal);
   --city-sun:      #e8b830;
   --city-stone:    var(--bg);
-  --font-display:  'ZCOOL KuaiLe','PingFang TC','Microsoft JhengHei',sans-serif;
+  --font-display:  'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;
 
   /* Classes */
   --baby-bg:   #fdeae5; --baby-bd: #e88c7a; --baby-tx: #b85040;
@@ -2719,6 +2705,18 @@ function _rosterKidsAsOf(cls,dateStr){
           <div class="hcard-lbl">Evaluation</div>
           <div class="hcard-title">&#x1F4CB; 評鑑</div>
           <div class="hcard-desc">評鑑相關資料</div>
+        </div>
+        <div class="hcard-arr">&#x203A;</div>
+      </div>
+    </div>
+    <div class="hcard c-pur" id="kgHomeCard">
+      <div class="hcard-in">
+        <div class="hcard-bar"></div>
+        <div class="hcard-img" style="display:flex;align-items:center;justify-content:center;font-size:2.2rem;">&#x1F3F0;</div>
+        <div class="hcard-body">
+          <div class="hcard-lbl">Kingdom</div>
+          <div class="hcard-title">&#x1F3F0; 王國議事廳</div>
+          <div class="hcard-desc">三位市長巡視<br>日誌 &#xB7; 適齡適性 &#xB7; 體溫 &#xB7; 清潔 &#xB7; 電訪 &#xB7; 交接</div>
         </div>
         <div class="hcard-arr">&#x203A;</div>
       </div>
@@ -8003,7 +8001,20 @@ var ASR = (function() {
     if(selC)rdrW();
     toast('✅ 已清空 '+kids.length+' 位小孩第'+wno+'週的照片');
   }
-  return {delT:delT,delC:delC,cm:cm,okT:okT,okC:okC,cf:cf,pf:pf,dp:dp,cpPhoto:cpPhoto,share:share,crpOpen:crpOpen,setYrTh:setYrTh,syncDropdowns:syncDropdowns,rdrT:rdrT,rdrW:rdrW,_restoreDraft:_restoreDraft,_clearPendingDraft:_clearPendingDraft,updDom:updDom,refreshRoster:refreshRoster,resetForCompany:resetForCompany,resetWeekPhotos:resetWeekPhotos,openPromote:openPromote,closePromote:closePromote,confirmPromote:confirmPromote,openAge:openAge,closeAge:closeAge,confirmAge:confirmAge,openLifecycle:openLifecycle,closeLifecycle:closeLifecycle,confirmLifecycle:confirmLifecycle,toggleShowLeftKids:toggleShowLeftKids,openEditTeacher:openEditTeacher,onCertTypeChange:onCertTypeChange};
+  return {
+    /* 王國議事廳送審用：目前打開的這份適性記錄是誰、哪一週 */
+    getCtx:function(){
+      if(!fCtx||!fCtx.cid||!document.getElementById('asrFmOv').classList.contains('on'))return null;
+      var t=null,c=null,wk=null,i,k,all=[];
+      for(i=0;i<asrDB.teachers.length;i++)if(asrDB.teachers[i].id===fCtx.tid)t=asrDB.teachers[i];
+      var cs=asrDB.children[fCtx.tid]||[];for(i=0;i<cs.length;i++)if(cs[i].id===fCtx.cid)c=cs[i];
+      for(k in asrDB.children){(asrDB.children[k]||[]).forEach(function(x){if(x&&x.name)all.push(x.name);});}
+      for(i=0;i<(wkData.weeks||[]).length;i++)if(wkData.weeks[i].no===fCtx.wno)wk=wkData.weeks[i];
+      var cls=t?t.cls:'run';
+      return {key:selYear+'_'+selTheme+'_'+fCtx.tid+fCtx.cid+fCtx.wno,childName:c?c.name:'',age:c?c.age:'',clsLabel:CLS[cls]||cls,
+        theme:wk?wk.theme:(wkData.name||''),themeNo:selTheme,wno:fCtx.wno,dates:wk?wk.dates:'',allNames:all};
+    },
+    delT:delT,delC:delC,cm:cm,okT:okT,okC:okC,cf:cf,pf:pf,dp:dp,cpPhoto:cpPhoto,share:share,crpOpen:crpOpen,setYrTh:setYrTh,syncDropdowns:syncDropdowns,rdrT:rdrT,rdrW:rdrW,_restoreDraft:_restoreDraft,_clearPendingDraft:_clearPendingDraft,updDom:updDom,refreshRoster:refreshRoster,resetForCompany:resetForCompany,resetWeekPhotos:resetWeekPhotos,openPromote:openPromote,closePromote:closePromote,confirmPromote:confirmPromote,openAge:openAge,closeAge:closeAge,confirmAge:confirmAge,openLifecycle:openLifecycle,closeLifecycle:closeLifecycle,confirmLifecycle:confirmLifecycle,toggleShowLeftKids:toggleShowLeftKids,openEditTeacher:openEditTeacher,onCertTypeChange:onCertTypeChange};
 })();
 
 </script>
@@ -9249,6 +9260,27 @@ var DIARY=(function(){
   return {
     reattach:dbLoad,
     getCtx:function(){if(!dCtx)return null;return {key:dbKey(dYr,dTh,dWk,dCtx.dayNo,dCtx.cls),cls:dCtx.cls,clsLabel:CLSLABEL[dCtx.cls],age:CLSAGE[dCtx.cls],ymd:dCtx.dayData.ymd,dow:dCtx.dayData.dow,act:dCtx.act};},
+    /* 王國議事廳巡視用：本週每班每天該寫的日誌、寫了沒 */
+    kgWeek:function(){
+      var yr=(new Date()>=new Date(2026,7,1))?'115':'114';
+      var tw=findCurrentThWk(yr);var th=allThemes[yr]&&allThemes[yr][tw.th];if(!th)return null;
+      var wk=null,i;for(i=0;i<(th.weeks||[]).length;i++){if(th.weeks[i].no===tw.wk)wk=th.weeks[i];}
+      if(!wk)return null;
+      var old=dYr;dYr=yr;var days=parseDays(wk.dates);dYr=old;
+      var acts=(th.acts&&th.acts[tw.wk])||{};
+      var n=new Date(),todayIso=n.getFullYear()+'-'+(n.getMonth()<9?'0':'')+(n.getMonth()+1)+'-'+(n.getDate()<10?'0':'')+n.getDate();
+      var out=[];
+      days.forEach(function(d){
+        var p=d.iso.split('-');
+        if(typeof _isHoliday==='function'&&_isHoliday(parseInt(p[0],10)-1911,parseInt(p[1],10),parseInt(p[2],10)))return;
+        ['baby','crawl','run'].forEach(function(cls){
+          var a=acts[cls]&&acts[cls][d.no-1];
+          if(!a||!a.name||a.dom==='國定假日')return;
+          out.push({iso:d.iso,dow:d.dow,cls:cls,clsLabel:CLSLABEL[cls],name:a.name,due:d.iso<=todayIso,done:!!diaryDB.entries[dbKey(yr,tw.th,tw.wk,d.no,cls)]});
+        });
+      });
+      return {yr:yr,th:tw.th,wk:tw.wk,dates:wk.dates,items:out};
+    },
     openDiary:openDiary,renderDays:renderDays,setWk:setWk,onThChange:onThChange,onWkChange:onWkChange,
     openForm:openForm,backToList:backToList,
     addStep:addStep,removeStep:removeStep,resetToTpl:resetToTpl,loadPhoto:loadPhoto,
@@ -20221,7 +20253,22 @@ var BODYTEMP=(function(){
     });
     return{done:done,total:total,offToday:false};
   }
-  return{init:init,show:show,selectTeacher:selectTeacher,changeT:changeT,changeYM:changeYM,setVal:setVal,setLeave:setLeave,setOffType:setOffType,download:download,downloadMonth:downloadMonth,todaySummary:todaySummary,summaryForDate:summaryForDate,todayStatus:todayStatus};
+  return{init:init,show:show,selectTeacher:selectTeacher,changeT:changeT,changeYM:changeYM,setVal:setVal,setLeave:setLeave,setOffType:setOffType,download:download,downloadMonth:downloadMonth,todaySummary:todaySummary,summaryForDate:summaryForDate,todayStatus:todayStatus,
+    /* 王國議事廳巡視用：某一天誰還沒量、誰超過 38 度（今天只看已經到時間的時段） */
+    kgDay:function(ty,tm,td,isToday){
+      if(isWeekend(ty,tm,td)||_isHoliday(ty,tm,td))return{off:true,missing:[],fever:[]};
+      var now=new Date(),hr=isToday?(now.getHours()+now.getMinutes()/60):99,missing=[],fever=[];
+      SIGNERS.forEach(function(name){
+        var k=name+'_'+ty+'_'+tm;
+        var dayRec=(db.records[k]&&db.records[k].days&&db.records[k].days[td])||{};
+        if(dayRec.leave||dayRec.offType)return;
+        var due=['t1','t2','t3'].filter(function(f){return hr>=SLOT_HOURS[f];});
+        if(due.some(function(f){return !dayRec[f];}))missing.push(name);
+        var fv=[dayRec.t1,dayRec.t2,dayRec.t3].filter(function(v){return v&&!isNaN(parseFloat(v));}).map(parseFloat);
+        if(fv.some(function(v){return v>38.0;}))fever.push(name);
+      });
+      return{off:false,missing:missing,fever:fever};
+    }};
 })();
 
 /* ── 今日總覽：行政派發任務（全新功能，之前完全沒有這份資料結構）
@@ -23880,7 +23927,8 @@ var TEACHERLEAVE=(function(){
     var ok=false;try{ok=document.execCommand('copy');}catch(e){}_flashSubCopied(ok);
   }
 
-  return{init:init,refresh:render,viewDate:viewDate,backToday:backToday,openEdit:openEdit,closeEdit:closeEdit,pickEditType:pickEditType,reviewFormCur:reviewFormCur,clearLeave:clearLeave,saveEdit:saveEdit,openParental:openParental,closeParental:closeParental,saveParental:saveParental,deleteParental:deleteParental,openReport:openReport,closeReport:closeReport,copyReport:copyReport,reviewForm:reviewForm,openCompletion:openCompletion,closeCompletion:closeCompletion,renderCompletion:renderCompletion,printCompletion:printCompletion,toggleCompFlag:toggleCompFlag,openSubReport:openSubReport,closeSubReport:closeSubReport,copySubReport:copySubReport,renderSubReport:renderSubReport};
+  return{kgRows:function(s,e){load();var rows=_compRows(s,e);rows.forEach(function(r){r.hasForm=!!_resolveSub(r.name,r.iso);});return rows;},
+    init:init,refresh:render,viewDate:viewDate,backToday:backToday,openEdit:openEdit,closeEdit:closeEdit,pickEditType:pickEditType,reviewFormCur:reviewFormCur,clearLeave:clearLeave,saveEdit:saveEdit,openParental:openParental,closeParental:closeParental,saveParental:saveParental,deleteParental:deleteParental,openReport:openReport,closeReport:closeReport,copyReport:copyReport,reviewForm:reviewForm,openCompletion:openCompletion,closeCompletion:closeCompletion,renderCompletion:renderCompletion,printCompletion:printCompletion,toggleCompFlag:toggleCompFlag,openSubReport:openSubReport,closeSubReport:closeSubReport,copySubReport:copySubReport,renderSubReport:renderSubReport};
 })();
 
 /* ════ LOGINTEST：隱藏的登入試用頁（只能用網址 #logintest 進來）════
@@ -24027,7 +24075,9 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 
 
-<!-- ═══ 王國議事廳：教保日誌三位市長審核（ES5，免金鑰：複製到 Claude App → 貼回來播放） ═══ -->
+<!-- ═══ 王國議事廳（ES5）：
+     1) 巡視模式：三位市長自動檢查各表單有沒有填（教保日誌、適齡適性、體溫、清潔表單、電訪表、請假交接單），不用金鑰
+     2) 送審模式：單篇教保日誌複製到 Claude App 審內容，貼回來播放 ═══ -->
 <style>
 #kgOv{position:fixed;top:0;left:0;right:0;bottom:0;z-index:99990;background:#14162a;color:#eceaf6;display:none;flex-direction:column;font-family:'Noto Sans TC','PingFang TC',sans-serif;}
 #kgOv.on{display:flex;}
@@ -24036,7 +24086,7 @@ document.addEventListener('DOMContentLoaded',function(){
 .kg-hd-t b{display:block;font-size:1.05rem;letter-spacing:1px;}
 .kg-hd-t span{display:block;font-size:.72rem;color:#9a9cc0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .kg-x{background:#2a2d48;color:#fff;border:none;border-radius:50%;width:34px;height:34px;font-size:1rem;cursor:pointer;flex-shrink:0;}
-.kg-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 14px 40px;}
+.kg-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 14px 60px;}
 .kg-stage{position:relative;width:100%;max-width:420px;margin:0 auto;}
 .kg-stage svg{display:block;width:100%;height:auto;}
 .kg-bub{position:relative;max-width:420px;margin:12px auto 0;min-height:76px;background:#fbf7ee;color:#3a3550;border:3px solid #5aa878;border-radius:16px;padding:10px 14px;font-size:.88rem;line-height:1.55;box-sizing:border-box;}
@@ -24066,21 +24116,72 @@ document.addEventListener('DOMContentLoaded',function(){
 .kg-concl{white-space:pre-wrap;font-size:.82rem;line-height:1.7;color:#eceaf6;}
 .kg-entry-btn{background:#5a4fa8;color:#fff;border:none;border-radius:24px;padding:11px 14px;font-size:.88rem;font-weight:700;cursor:pointer;font-family:'Noto Sans TC',sans-serif;white-space:nowrap;}
 .kg-toast{position:fixed;left:50%;bottom:40px;-webkit-transform:translateX(-50%);transform:translateX(-50%);background:#5aa878;color:#fff;padding:9px 18px;border-radius:20px;font-size:.85rem;font-weight:700;z-index:99991;display:none;}
+.kg-f{border-top:1px dashed #2f3356;padding:10px 0;}
+.kg-f:first-of-type{border-top:none;padding-top:2px;}
+.kg-f-hd{display:flex;align-items:center;gap:8px;}
+.kg-f-t{flex:1;font-weight:800;font-size:.86rem;}
+.kg-chip{font-size:.68rem;font-weight:800;padding:2px 9px;border-radius:10px;color:#fff;white-space:nowrap;}
+.kg-f-s{font-size:.78rem;color:#c9cbe6;margin-top:4px;line-height:1.55;}
+.kg-f-d{margin:6px 0 0;padding-left:18px;font-size:.76rem;color:#b5b7d6;line-height:1.65;}
+.kg-go{background:transparent;color:#8fd3a8;border:1px solid #3e6a52;border-radius:14px;padding:4px 10px;font-size:.72rem;font-weight:700;cursor:pointer;margin-top:6px;font-family:inherit;}
+.kg-sel{flex:1;min-width:0;background:#14162a;color:#eceaf6;border:1px solid #3a3e66;border-radius:10px;padding:8px;font-size:16px;font-family:inherit;}
+.kg-more{background:transparent;border:none;color:#9a9cc0;font-size:.72rem;padding:2px 0;cursor:pointer;font-family:inherit;text-decoration:underline;}
 </style>
 
 <div id="kgOv">
   <div class="kg-hd">
-    <div class="kg-hd-t"><b>🏰 王國議事廳</b><span id="kgSub">教保日誌審核</span></div>
+    <div class="kg-hd-t"><b>🏰 王國議事廳</b><span id="kgSub"></span></div>
     <button class="kg-x" id="kgClose" aria-label="關閉">✕</button>
   </div>
   <div class="kg-body">
-    <div class="kg-bub" id="kgBub"><div class="kg-bub-n" id="kgBubN" style="color:#5aa878;">議事廳</div><div id="kgBubT">三位市長已就座，等待日誌送審。</div></div>
+    <div class="kg-bub" id="kgBub"><div class="kg-bub-n" id="kgBubN" style="color:#5aa878;">議事廳</div><div id="kgBubT">三位市長已就座。</div></div>
     <div class="kg-stage" id="kgStage"></div>
     <div class="kg-ctl" id="kgCtl" style="display:none;">
       <button class="kg-btn sub" id="kgAuto">⏯ 自動播放</button>
       <button class="kg-btn" id="kgNext">下一句 ▶</button>
       <button class="kg-btn sub" id="kgSkip">看結論</button>
     </div>
+
+    <!-- 巡視模式 -->
+    <div class="kg-card" id="kgRepCard" style="display:none;">
+      <h4>📋 巡視報告 <span id="kgRepWhen" style="font-weight:400;font-size:.72rem;color:#9a9cc0;"></span></h4>
+      <div id="kgRep"></div>
+      <div style="display:flex;gap:8px;margin-top:12px;">
+        <button class="kg-btn sub" id="kgReInspect">🔄 重新巡視</button>
+        <button class="kg-btn" id="kgCopyRep">📋 複製報告文字</button>
+      </div>
+      <button class="kg-btn" id="kgOpenBatch" style="width:100%;margin-top:8px;background:#5a4fa8;">📦 適齡適性整週檢查</button>
+    </div>
+
+    <!-- 適性批次送審 -->
+    <div class="kg-card" id="kgBatch" style="display:none;">
+      <h4>📦 適齡適性整週檢查</h4>
+      <p>可以直接自動檢查；也可以一次打包整週已填寫的適性記錄，自動分成幾批。每批複製到 Claude App 送出，再把回覆貼回下面（好幾批的回覆可以全部貼在一起）。孩子姓名都會換成代號，照片不會送出。</p>
+      <div style="display:flex;gap:8px;margin-bottom:8px;">
+        <select class="kg-sel" id="kgBWeek"></select>
+        <select class="kg-sel" id="kgBTeacher"></select>
+      </div>
+      <label style="display:flex;align-items:center;gap:6px;font-size:.78rem;color:#c9cbe6;margin-bottom:8px;"><input type="checkbox" id="kgBSkip" checked> 跳過已經審過、之後也沒改過的</label>
+      <button class="kg-btn" id="kgBLocal" style="width:100%;margin-bottom:6px;">🔍 不用 AI，直接自動檢查</button>
+      <p style="margin:0 0 12px;">立刻檢查：負面標籤、簡體字、省思太短、跟其他孩子寫得幾乎一樣、名字寫成別的孩子、活動欄位空白、沒回應家長留言。想要更細的語意建議，再用下面的 Claude 送審。</p>
+      <h4 style="margin-top:4px;">或交給 Claude 細審</h4>
+      <div id="kgBInfo" style="font-size:.78rem;color:#b5b7d6;margin-bottom:8px;line-height:1.6;"></div>
+      <div id="kgBParts"></div>
+      <h4 style="margin-top:14px;">貼回 Claude 的回覆</h4>
+      <textarea class="kg-ta" id="kgBPaste" placeholder="把每一批的回覆都貼在這裡，可以一次貼好幾批…"></textarea>
+      <button class="kg-btn" id="kgBStart" style="width:100%;margin-top:10px;">🏛 開始開會</button>
+    </div>
+    <div class="kg-card" id="kgBRes" style="display:none;">
+      <h4><span id="kgBResTitle">📜 審查結果</span> <span id="kgBResWhen" style="font-weight:400;font-size:.72rem;color:#9a9cc0;"></span></h4>
+      <div id="kgBSum" style="margin-bottom:8px;"></div>
+      <div id="kgBList"></div>
+      <div style="display:flex;gap:8px;margin-top:12px;">
+        <button class="kg-btn sub" id="kgBClear">🗑 清除這週結果</button>
+        <button class="kg-btn" id="kgBCopy">📋 複製修改清單</button>
+      </div>
+    </div>
+
+    <!-- 送審模式 -->
     <div class="kg-card" id="kgConclCard" style="display:none;">
       <h4>📜 議事結論</h4>
       <div id="kgVerdict"></div>
@@ -24090,7 +24191,13 @@ document.addEventListener('DOMContentLoaded',function(){
       <h4>🗒 會議紀錄</h4>
       <ul class="kg-log" id="kgLog"></ul>
     </div>
-    <div class="kg-card" id="kgStep">
+    <div class="kg-card" id="kgLocal" style="display:none;">
+      <h4>🔍 自動檢查（不用 AI）</h4>
+      <div id="kgLVerdict"></div>
+      <div id="kgLBody"></div>
+      <p style="margin:10px 0 0;">想要更細的語意建議，可以再用下面的方式交給 Claude 審。</p>
+    </div>
+    <div class="kg-card" id="kgStep" style="display:none;">
       <h4>① 複製送審內容</h4>
       <p>會把這篇日誌整理好，連同給市長們的開會指示一起複製。孩子的姓名會自動換成代號。</p>
       <button class="kg-btn" id="kgCopy" style="width:100%;">📋 複製送審內容</button>
@@ -24109,17 +24216,26 @@ document.addEventListener('DOMContentLoaded',function(){
 
 <script>
 var KINGDOM=(function(){
+  /* insp：巡視時的轄區；rev：日誌送審時的把關重點 */
   var MAYORS=[
-    {id:'ink', name:'墨墨', role:'用語市長', face:'🦉', color:'#c8a830', x:30, y:43, match:'墨'},
-    {id:'dot', name:'點點', role:'完整市長', face:'🐻', color:'#6a9ad4', x:50, y:33, match:'點'},
-    {id:'warm',name:'暖暖', role:'家長市長', face:'🐰', color:'#d46a8a', x:70, y:43, match:'暖'}
+    {id:'ink', name:'墨墨', insp:'行政市長', rev:'用語把關', face:'🦉', color:'#c8a830', x:30, y:43, match:'墨'},
+    {id:'dot', name:'點點', insp:'教保市長', rev:'完整把關', face:'🐻', color:'#6a9ad4', x:50, y:33, match:'點'},
+    {id:'warm',name:'暖暖', insp:'健康市長', rev:'家長視角', face:'🐰', color:'#d46a8a', x:70, y:43, match:'暖'}
   ];
-  var lines=[], conclusion='', pos=-1, autoTimer=null, ctx=null;
+  var M={}; (function(){for(var i=0;i<MAYORS.length;i++)M[MAYORS[i].id]=MAYORS[i];})();
+  var LV={ok:{c:'#5aa878',t:'完成'},info:{c:'#6a7ab8',t:'進行中'},warn:{c:'#f2a03a',t:'提醒'},bad:{c:'#e04040',t:'要追蹤'}};
+  var mode='inspect', lines=[], conclusion='', pos=-1, autoTimer=null, ctx=null, findings=[], onFinish=null;
 
   function $(id){return document.getElementById(id);}
   function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
   function toast(m){var t=$('kgToast');t.textContent=m;t.style.display='block';setTimeout(function(){t.style.display='none';},1800);}
   function store(k,v){try{if(v===undefined)return localStorage.getItem(k);if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,v);}catch(e){return null;}}
+  function p2(n){return (n<10?'0':'')+n;}
+  function isoOf(d){return d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate());}
+  function md(iso){var p=iso.split('-');return parseInt(p[1],10)+'/'+parseInt(p[2],10);}
+  var DOWS=['日','一','二','三','四','五','六'];
+  function nick(n){return n&&n.length>2?n.slice(1):(n||'');}
+  function safe(fn,dflt){try{return fn();}catch(e){if(window.console)console.warn('[KINGDOM]',e);return dflt;}}
 
   /* ── 畫等角議事廳 ── */
   function drawStage(){
@@ -24127,34 +24243,31 @@ var KINGDOM=(function(){
     s+='<polygon points="20,160 180,80 180,18 20,98" fill="#8a6a4e"/>';
     s+='<polygon points="180,80 340,160 340,98 180,18" fill="#a07c5a"/>';
     s+='<polygon points="20,98 180,18 180,10 20,90" fill="#5e4632"/><polygon points="180,18 340,98 340,90 180,10" fill="#6e5440"/>';
-    /* 旗幟、窗、書架 */
     s+='<polygon points="52,128 72,118 72,88 52,98" fill="#e0703a"/><polygon points="57,110 67,105 62,118" fill="#fbf7ee"/>';
     s+='<polygon points="118,98 150,82 150,56 118,72" fill="#3a5a7a"/><polygon points="121,95 147,82 147,60 121,73" fill="#7fb3d5"/>';
     s+='<polygon points="270,124 304,141 304,105 270,88" fill="#6e4a30"/>';
-    s+='<rect x="0" y="0" width="0" height="0"/>';
     var books=['#e07a5f','#81b29a','#f2cc8f','#7fb3d5','#c9a0dc'];
     for(var b=0;b<5;b++){var bx=274+b*6,by=94+b*3;s+='<polygon points="'+bx+','+by+' '+(bx+5)+','+(by+2.5)+' '+(bx+5)+','+(by+18.5)+' '+bx+','+(by+16)+'" fill="'+books[b]+'"/>';}
-    /* 地板 */
     s+='<polygon points="180,80 340,160 180,240 20,160" fill="#d9d0c1"/>';
     var n=8,i;
     for(i=0;i<n;i++){for(var j=0;j<n;j++){if((i+j)%2)continue;
-      var x0=180+(i-j)*10*2,y0=80+(i+j)*10;
+      var x0=180+(i-j)*20,y0=80+(i+j)*10;
       s+='<polygon points="'+x0+','+y0+' '+(x0+20)+','+(y0+10)+' '+x0+','+(y0+20)+' '+(x0-20)+','+(y0+10)+'" fill="#c7bca9"/>';}}
     s+='<polygon points="20,160 180,240 180,250 20,170" fill="#6e5440"/><polygon points="180,240 340,160 340,170 180,250" fill="#5e4632"/>';
-    /* 地毯 + 圓桌 */
     s+='<polygon points="180,118 270,163 180,208 90,163" fill="#f3e3b8"/>';
     s+='<ellipse cx="180" cy="168" rx="52" ry="26" fill="#6e4a30"/><ellipse cx="180" cy="163" rx="52" ry="26" fill="#9a6a44"/>';
     s+='<polygon points="168,158 180,152 192,158 180,164" fill="#81b29a"/><polygon points="180,164 192,158 192,166 180,172" fill="#f2cc8f"/><polygon points="168,158 180,164 180,172 168,166" fill="#e07a5f"/>';
-    /* 收件箱 */
     s+='<polygon points="52,196 72,186 92,196 72,206" fill="#b0805a"/><polygon points="52,196 72,206 72,222 52,212" fill="#8a6040"/><polygon points="72,206 92,196 92,212 72,222" fill="#a07050"/>';
     s+='</svg>';
     var h=s;
     for(i=0;i<MAYORS.length;i++){var m=MAYORS[i];
-      h+='<div class="kg-chr" id="kgC_'+m.id+'" style="left:'+m.x+'%;top:'+m.y+'%;"><span class="kg-face">'+m.face+'</span><br><span class="kg-tag">'+m.name+'</span></div>';}
-    h+='<div style="position:absolute;left:18%;top:70%;font-size:.62rem;background:rgba(20,22,42,.85);padding:2px 8px;border-radius:9px;">收件箱 <b id="kgInbox" style="color:#f2a03a;">0</b></div>';
+      h+='<div class="kg-chr" id="kgC_'+m.id+'" style="left:'+m.x+'%;top:'+m.y+'%;"><span class="kg-face">'+m.face+'</span><br><span class="kg-tag" id="kgTag_'+m.id+'">'+m.name+'</span></div>';}
+    h+='<div style="position:absolute;left:18%;top:70%;font-size:.62rem;background:rgba(20,22,42,.85);padding:2px 8px;border-radius:9px;"><span id="kgInboxLbl">待辦</span> <b id="kgInbox" style="color:#f2a03a;">0</b></div>';
     $('kgStage').innerHTML=h;
   }
-
+  function setTags(){
+    for(var i=0;i<MAYORS.length;i++){var m=MAYORS[i];$('kgTag_'+m.id).textContent=m.name;}
+  }
   function setTalk(id){
     for(var i=0;i<MAYORS.length;i++){var el=$('kgC_'+MAYORS[i].id);if(!el)continue;
       el.className='kg-chr'+(id?(MAYORS[i].id===id?' talk':' dim'):'');}
@@ -24164,14 +24277,644 @@ var KINGDOM=(function(){
     $('kgBub').style.borderColor=color;
     $('kgBubT').innerHTML=esc(text);
   }
+  function roleOf(m){return mode==='inspect'?m.insp:m.rev;}
   function mayorOf(label){
-    for(var i=0;i<MAYORS.length;i++){if(label.indexOf(MAYORS[i].match)>=0||label.indexOf(MAYORS[i].role)>=0)return MAYORS[i];}
+    for(var i=0;i<MAYORS.length;i++){if(label.indexOf(MAYORS[i].match)>=0)return MAYORS[i];}
     return null;
   }
 
-  /* ── 匿名化 + 組送審內容 ── */
+  /* ════════ 播放共用 ════════ */
+  function stopAuto(){if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}$('kgAuto').textContent='⏯ 自動播放';}
+  function show(i){
+    pos=i;
+    var L=lines[i];
+    if(L){
+      var m=L.mayor;
+      setTalk(m?m.id:null);
+      bubble(m?(m.name+'・'+roleOf(m)):L.label,L.color||(m?m.color:'#9a9cc0'),L.text);
+      if(mode==='review'){
+        var li=document.createElement('li');
+        li.innerHTML='<b style="color:'+(m?m.color:'#9a9cc0')+';">'+esc(m?m.name:L.label)+'</b>'+esc(L.text);
+        $('kgLog').appendChild(li);$('kgLogCard').style.display='';
+      }
+    }
+    if(i>=lines.length-1){finish();}
+  }
+  function next(){if(pos<lines.length-1)show(pos+1);else finish();}
+  function finish(){
+    stopAuto();
+    $('kgNext').disabled=true;$('kgSkip').disabled=true;$('kgAuto').disabled=true;
+    if(onFinish)onFinish();
+  }
+  function skipAll(){stopAuto();while(pos<lines.length-1){show(pos+1);}finish();}
+  function toggleAuto(){
+    if(autoTimer){stopAuto();return;}
+    $('kgAuto').textContent='⏸ 暫停';
+    (function tick(){
+      if(pos>=lines.length-1){finish();return;}
+      next();
+      var L=lines[pos],ms=1800+(L?L.text.length*70:0);
+      autoTimer=setTimeout(tick,Math.min(ms,6500));
+    })();
+  }
+  function resetView(){
+    stopAuto();pos=-1;lines=[];conclusion='';onFinish=null;
+    $('kgLog').innerHTML='';
+    var hide=['kgLogCard','kgConclCard','kgStep','kgAgain','kgRepCard','kgBatch','kgBRes','kgLocal'];
+    for(var i=0;i<hide.length;i++)$(hide[i]).style.display='none';
+    $('kgCtl').style.display='none';$('kgNext').disabled=false;$('kgSkip').disabled=false;$('kgAuto').disabled=false;
+    setTalk(null);
+  }
+  function openOv(){$('kgOv').className='on';document.body.style.overflow='hidden';}
+  function close(){stopAuto();$('kgOv').className='';document.body.style.overflow='';}
+
+  /* ════════ 巡視模式：各表單填寫檢查 ════════ */
+  function curYr(){return (new Date()>=new Date(2026,7,1))?'115':'114';}
+
+  /* 教保日誌：本週到今天為止，每班每天該寫的日誌 */
+  function chkDiary(today){
+    var w=safe(function(){return DIARY.kgWeek();},null);
+    if(!w)return {mayor:'dot',icon:'📓',title:'教保日誌',lv:'info',sum:'找不到本週課程資料。',det:[],go:'diary'};
+    var due=[],miss=[],i;
+    for(i=0;i<w.items.length;i++){if(w.items[i].due){due.push(w.items[i]);if(!w.items[i].done)miss.push(w.items[i]);}}
+    if(!due.length)return {mayor:'dot',icon:'📓',title:'教保日誌',lv:'ok',sum:'本週還沒到要寫日誌的日子。',det:[],go:'diary'};
+    if(!miss.length)return {mayor:'dot',icon:'📓',title:'教保日誌',lv:'ok',sum:'本週到今天的 '+due.length+' 篇日誌全部寫好了！',det:[],go:'diary'};
+    var det=[],onlyToday=true;
+    for(i=0;i<miss.length;i++){det.push(md(miss[i].iso)+'（'+miss[i].dow+'）'+miss[i].clsLabel.replace(/^\S+\s/,'')+'：'+miss[i].name);if(miss[i].iso!==today)onlyToday=false;}
+    return {mayor:'dot',icon:'📓',title:'教保日誌',lv:onlyToday?'warn':'bad',
+      sum:'本週該寫 '+due.length+' 篇，還差 '+miss.length+' 篇'+(onlyToday?'（都是今天的）':'')+'。',det:det,go:'diary'};
+  }
+
+  /* 適齡適性：上週要全部寫完；本週看進度 */
+  function allWeeks(yr){
+    var out=[],th=allThemes[yr]||{};
+    Object.keys(th).forEach(function(k){
+      (th[k].weeks||[]).forEach(function(wk){
+        var s=String(wk.dates||'').split('~')[0].split('/');var m=parseInt(s[0],10),d=parseInt(s[1],10);
+        if(isNaN(m)||isNaN(d))return;
+        var y=m>=8?(1911+parseInt(yr,10)):(1912+parseInt(yr,10));
+        out.push({th:parseInt(k,10),wk:wk.no,dates:wk.dates,start:new Date(y,m-1,d)});
+      });
+    });
+    out.sort(function(a,b){return a.start-b.start;});
+    return out;
+  }
+  function chkAsr(todayD){
+    var yr=curYr(),weeks=allWeeks(yr),ci=-1,i,t0=new Date(todayD.getFullYear(),todayD.getMonth(),todayD.getDate());
+    for(i=0;i<weeks.length;i++){if(weeks[i].start<=t0)ci=i;}
+    if(ci<0)return {mayor:'dot',icon:'📋',title:'適齡適性記錄',lv:'info',sum:'這學期還沒開始。',det:[],go:'asr'};
+    var cur=weeks[ci],inCur=(t0-cur.start)<7*86400000,prev=inCur?weeks[ci-1]:cur;
+    var ros=safe(function(){return ROSTER.rosterAsOf(yr,isoOf(todayD));},null);
+    var pl=window['_asrPreload'+yr]||{};
+    var teachers=(ros&&ros.teachers&&ros.teachers.length)?ros.teachers:(pl.teachers||[]);
+    var kids=(ros&&ros.children)?ros.children:(pl.children||{});
+    var reps=(typeof asrDB!=='undefined'&&asrDB.reports)||{};
+    function tally(w){
+      var r={done:0,total:0,miss:[]};if(!w)return r;
+      teachers.forEach(function(t){
+        var cs=kids[t.id]||[],m=[];
+        cs.forEach(function(c){r.total++;if(reps[yr+'_'+w.th+'_'+t.id+c.id+w.wk])r.done++;else m.push(c.name);});
+        if(m.length)r.miss.push({t:t.name,n:m.length});
+      });
+      return r;
+    }
+    var P=tally(prev),C=inCur?tally(cur):null,det=[],lv='ok',sum='';
+    if(prev&&P.miss.length){
+      lv='bad';
+      sum='上週（'+prev.dates+'）還有 '+(P.total-P.done)+' 位幼兒沒寫。';
+      P.miss.forEach(function(x){det.push('上週 '+x.t+'：'+x.n+' 位沒寫');});
+    }else if(prev){sum='上週 '+P.total+' 份全部完成！';}
+    if(C){
+      sum+=' 本週進度 '+C.done+'/'+C.total+'。';
+      if(lv==='ok'&&C.done<C.total)lv=(todayD.getDay()===5||todayD.getDay()===6||todayD.getDay()===0)?'warn':'info';
+      C.miss.forEach(function(x){det.push('本週 '+x.t+'：還有 '+x.n+' 位');});
+    }
+    return {mayor:'dot',icon:'📋',title:'適齡適性記錄',lv:lv,sum:sum.replace(/^\s+/,''),det:det,go:'asr'};
+  }
+
+  /* 體溫：今天＋本週已過的平日；順便看有沒有發燒 */
+  function chkTemp(todayD){
+    if(typeof BODYTEMP==='undefined'||!BODYTEMP.kgDay)return {mayor:'warm',icon:'🌡️',title:'體溫管理',lv:'info',sum:'讀不到體溫資料。',det:[],go:'bodytemp'};
+    var dow=todayD.getDay(),mon=new Date(todayD.getFullYear(),todayD.getMonth(),todayD.getDate()-((dow+6)%7));
+    var det=[],fev=[],pastMiss=0,todayMiss=0,i;
+    for(i=0;i<5;i++){
+      var d=new Date(mon.getFullYear(),mon.getMonth(),mon.getDate()+i);
+      if(d>todayD)break;
+      var isT=isoOf(d)===isoOf(todayD);
+      var r=BODYTEMP.kgDay(d.getFullYear()-1911,d.getMonth()+1,d.getDate(),isT);
+      if(r.off)continue;
+      if(r.missing.length){det.push(md(isoOf(d))+(isT?'（今天）':'')+'：'+r.missing.map(nick).join('、')+' 還沒量');if(isT)todayMiss+=r.missing.length;else pastMiss+=r.missing.length;}
+      if(r.fever.length)fev.push(md(isoOf(d))+' '+r.fever.map(nick).join('、'));
+    }
+    if(fev.length)det.unshift('⚠️ 超過 38 度：'+fev.join('；'));
+    var lv=(fev.length||pastMiss)?'bad':(todayMiss?'warn':'ok');
+    var sum=lv==='ok'?'本週老師體溫都量好了，沒有人發燒。':
+      ((fev.length?'有老師體溫超過 38 度！':'')+(pastMiss?'本週有 '+pastMiss+' 人次漏量。':'')+(todayMiss?'今天還有 '+todayMiss+' 位沒量。':''));
+    return {mayor:'warm',icon:'🌡️',title:'體溫管理',lv:lv,sum:sum,det:det,go:'bodytemp'};
+  }
+
+  /* 清潔表單：環境清潔、環境溫濕度、班級寢具（本月到今天） */
+  function chkClean(todayD){
+    var y=todayD.getFullYear()-1911,m=todayD.getMonth()+1,td=todayD.getDate();
+    var noForms=(typeof CLEAN_FORMS==='undefined'||!CLEAN_FORMS.length)&&(typeof BEDDING_CLASSES==='undefined'||!BEDDING_CLASSES.length);
+    if(noForms)return {mayor:'warm',icon:'🧹',title:'清潔表單',lv:'info',sum:'還沒讀到清潔表單的空間清單（可能網路還沒連上），稍後按「重新巡視」再試一次。',det:[],go:'clean'};
+    var det=[],bad=0,warn=0;
+    var env=safe(function(){return CLEAN.checkMonth(y,m);},[]);
+    var byArea={};
+    env.forEach(function(it){
+      if(it.day===td){warn++;det.push('環境清潔 '+it.area+'：今天還沒完成');return;}
+      bad++;(byArea[it.area]=byArea[it.area]||[]).push(m+'/'+it.day);
+    });
+    Object.keys(byArea).forEach(function(a){det.push('環境清潔 '+a+'：'+byArea[a].join('、')+' 沒勾齊或沒簽名');});
+    var tmp=safe(function(){return TEMP.checkMonth(y,m);},[]);
+    tmp.forEach(function(it){
+      var past=(it.missingDays||[]).filter(function(d){return d<td;}),isT=(it.missingDays||[]).indexOf(td)>=0;
+      if(past.length){bad++;det.push('溫濕度 '+it.area+'：缺 '+past.map(function(d){return m+'/'+d;}).join('、'));}
+      if(isT){warn++;det.push('溫濕度 '+it.area+'：今天還沒記錄');}
+    });
+    var bed=safe(function(){return BEDDING.checkMonth(y,m);},[]);
+    bed.forEach(function(it){
+      bad++;
+      var p=[];if(it.missingChildren&&it.missingChildren.length)p.push('未填齊：'+it.missingChildren.join('、'));if(it.missingSig)p.push('簽名沒簽齊');
+      det.push('寢具 '+it.area+'：'+p.join('；'));
+    });
+    var lv=bad?'bad':(warn?'warn':'ok');
+    var sum=lv==='ok'?'本月到今天的清潔、溫濕度、寢具都填齊了！':(bad?'本月有 '+bad+' 處缺漏要補。':'')+(warn?'今天還有 '+warn+' 項沒做。':'');
+    return {mayor:'warm',icon:'🧹',title:'清潔表單',lv:lv,sum:sum,det:det,go:'clean'};
+  }
+
+  /* 電訪表：每位幼兒每月至少一次 */
+  function chkPhone(todayD){
+    var y=todayD.getFullYear()-1911,m=todayD.getMonth()+1;
+    var iss=safe(function(){return PHONEVISIT.checkMonth(y,m);},[]);
+    var last=new Date(todayD.getFullYear(),m,0).getDate(),left=last-todayD.getDate();
+    if(!iss.length)return {mayor:'ink',icon:'📞',title:'電訪表',lv:'ok',sum:m+' 月每位幼兒都電訪過了！',det:[],go:'phonevisit'};
+    var by={},det=[];
+    iss.forEach(function(it){(by[it.area]=by[it.area]||[]).push(it.child);});
+    Object.keys(by).forEach(function(a){det.push(a+'：'+by[a].join('、'));});
+    return {mayor:'ink',icon:'📞',title:'電訪表',lv:left<=5?'bad':'warn',sum:m+' 月還有 '+iss.length+' 位幼兒沒電訪，離月底剩 '+left+' 天。',det:det,go:'phonevisit'};
+  }
+
+  /* 請假交接單：本月請假的老師，假單、交接單有沒有完成 */
+  function chkLeave(todayD){
+    var s=todayD.getFullYear()+'-'+p2(todayD.getMonth()+1)+'-01';
+    var rows=safe(function(){return TEACHERLEAVE.kgRows(s,isoOf(todayD));},null);
+    if(!rows)return {mayor:'ink',icon:'📝',title:'請假交接單',lv:'info',sum:'讀不到請假資料。',det:[],go:'teacherleave'};
+    if(!rows.length)return {mayor:'ink',icon:'📝',title:'請假交接單',lv:'ok',sum:'這個月還沒有老師請假。',det:[],go:'teacherleave'};
+    var bad=rows.filter(function(r){return !r.formWritten||!r.printed;}),det=[];
+    bad.forEach(function(r){
+      var p=[];if(!r.formWritten)p.push('假單✗');if(!r.printed)p.push('交接單✗');
+      det.push(md(r.iso)+' '+r.name+(r.leaveType?'（'+r.leaveType+'）':'')+'：'+p.join(' ')+(!r.printed&&r.hasForm?'　系統有找到她寫的交接單，可能只是還沒勾':''));
+    });
+    if(!bad.length)return {mayor:'ink',icon:'📝',title:'請假交接單',lv:'ok',sum:'本月 '+rows.length+' 筆請假，假單和交接單都完成了。',det:[],go:'teacherleave'};
+    return {mayor:'ink',icon:'📝',title:'請假交接單',lv:'bad',sum:'本月 '+rows.length+' 筆請假，'+bad.length+' 筆還沒完成。',det:det,go:'teacherleave'};
+  }
+
+  function goTo(id){
+    close();
+    if(id==='clean'){GO('clean');}
+    else GO(id);
+  }
+
+  function warmUp(){
+    var mods=[['CLEAN'],['TEMP'],['BEDDING'],['PHONEVISIT'],['BODYTEMP']];
+    for(var i=0;i<mods.length;i++){(function(n){safe(function(){if(window[n]&&window[n].init)window[n].init();});})(mods[i][0]);}
+  }
+
+  function runInspect(){
+    var now=new Date();
+    findings=[chkDiary(isoOf(now)),chkAsr(now),chkTemp(now),chkClean(now),chkPhone(now),chkLeave(now)];
+    var ord=['dot','warm','ink'],i,j,nb=0,nw=0;
+    lines=[{label:'議事廳',color:'#5aa878',text:(now.getMonth()+1)+'/'+now.getDate()+'（'+DOWS[now.getDay()]+'）巡視開始！三位市長輪流報告。'}];
+    for(i=0;i<ord.length;i++){
+      for(j=0;j<findings.length;j++){var f=findings[j];if(f.mayor!==ord[i])continue;
+        if(f.lv==='bad')nb++;if(f.lv==='warn')nw++;
+        lines.push({mayor:M[f.mayor],text:f.icon+' '+f.title+'：'+f.sum});}
+    }
+    var verdict=nb?('要追蹤 '+nb+' 項'+(nw?'、提醒 '+nw+' 項':'')+'，詳細在下面的巡視報告。'):(nw?'沒有漏填，只有 '+nw+' 項今天還沒做完。':'全部表單都填好了，王國一切平安！');
+    lines.push({label:'三位市長',color:nb?'#e04040':(nw?'#f2a03a':'#5aa878'),text:'巡視結論：'+verdict});
+    $('kgInboxLbl').textContent='待追蹤';$('kgInbox').textContent=String(nb);
+    renderReport(now);
+    $('kgCtl').style.display='flex';
+    bubble('議事廳','#5aa878','巡視完成！點「下一句」聽市長報告，或直接往下看報告。');
+    onFinish=function(){setTalk(null);};
+    $('kgRepCard').style.display='';
+  }
+  function renderReport(now){
+    $('kgRepWhen').textContent=(now.getMonth()+1)+'/'+now.getDate()+' '+now.getHours()+':'+p2(now.getMinutes());
+    var h='',ord={bad:0,warn:1,info:2,ok:3},list=findings.slice();
+    list.sort(function(a,b){return ord[a.lv]-ord[b.lv];});
+    for(var i=0;i<list.length;i++){
+      var f=list[i],m=M[f.mayor],lv=LV[f.lv];
+      h+='<div class="kg-f"><div class="kg-f-hd"><span>'+f.icon+'</span><span class="kg-f-t">'+esc(f.title)+'</span><span class="kg-chip" style="background:'+lv.c+';">'+lv.t+'</span></div>';
+      h+='<div class="kg-f-s"><span style="color:'+m.color+';font-weight:700;">'+m.name+'</span>　'+esc(f.sum)+'</div>';
+      if(f.det.length){
+        var show=f.det.slice(0,5),rest=f.det.slice(5);
+        h+='<ul class="kg-f-d">';for(var k=0;k<show.length;k++)h+='<li>'+esc(show[k])+'</li>';h+='</ul>';
+        if(rest.length){h+='<ul class="kg-f-d" style="display:none;" id="kgMore'+i+'">';for(k=0;k<rest.length;k++)h+='<li>'+esc(rest[k])+'</li>';h+='</ul>';
+          h+='<button class="kg-more" data-more="'+i+'">還有 '+rest.length+' 筆，展開</button><br>';}
+      }
+      if(f.lv!=='ok')h+='<button class="kg-go" data-go="'+f.go+'">前往 '+esc(f.title)+' ›</button>';
+      h+='</div>';
+    }
+    $('kgRep').innerHTML=h;
+  }
+  function reportText(){
+    var now=new Date(),L=['【王國議事廳巡視報告】'+(now.getMonth()+1)+'/'+now.getDate()+'（'+DOWS[now.getDay()]+'）'];
+    for(var i=0;i<findings.length;i++){var f=findings[i];
+      L.push('');L.push((f.lv==='ok'?'✅ ':(f.lv==='bad'?'❌ ':'⚠️ '))+f.title+'：'+f.sum);
+      for(var k=0;k<f.det.length;k++)L.push('・'+f.det[k]);}
+    return L.join('\n');
+  }
+
+  /* ════════ 適齡適性批次送審 ════════
+     代號對照表（幼兒01 → 哪一份記錄）只存在這支手機，不會送出去。 */
+  var PART_SIZE=12, bParts=[], bWeek=null;
+  function asrScope(){
+    var yr=curYr(),weeks=allWeeks(yr),now=new Date(),t0=new Date(now.getFullYear(),now.getMonth(),now.getDate()),ci=-1,i;
+    for(i=0;i<weeks.length;i++){if(weeks[i].start<=t0)ci=i;}
+    var ros=safe(function(){return ROSTER.rosterAsOf(yr,isoOf(now));},null);
+    var pl=window['_asrPreload'+yr]||{};
+    return {yr:yr,cur:ci>=0?weeks[ci]:null,prev:ci>0?weeks[ci-1]:null,
+      teachers:(ros&&ros.teachers&&ros.teachers.length)?ros.teachers:(pl.teachers||[]),
+      kids:(ros&&ros.children)?ros.children:(pl.children||{})};
+  }
+  function wkKey(sc,w){return sc.yr+'_'+w.th+'_'+w.wk;}
+  function loadJ(k){try{return JSON.parse(store(k)||'null');}catch(e){return null;}}
+  function saveJ(k,v){store(k,JSON.stringify(v));}
+  var CLSN={baby:'寶寶班',crawl:'爬爬班',run:'跑跑班'};
+
+  function batchSetup(){
+    var sc=asrScope(),ws=$('kgBWeek'),ts=$('kgBTeacher'),h='',i;
+    if(sc.prev)h+='<option value="prev">上週 '+sc.prev.dates+'</option>';
+    if(sc.cur)h+='<option value="cur">本週 '+sc.cur.dates+'</option>';
+    ws.innerHTML=h||'<option value="">沒有週次資料</option>';
+    h='<option value="">全部老師</option>';
+    for(i=0;i<sc.teachers.length;i++)h+='<option value="'+esc(sc.teachers[i].id)+'">'+esc(sc.teachers[i].name)+'</option>';
+    ts.innerHTML=h;
+    batchBuild();
+  }
+  function batchBuild(){
+    var sc=asrScope(),w=$('kgBWeek').value==='cur'?sc.cur:sc.prev,tf=$('kgBTeacher').value,skip=$('kgBSkip').checked;
+    bParts=[];bWeek=null;
+    if(!w){$('kgBInfo').textContent='找不到週次資料。';$('kgBParts').innerHTML='';return;}
+    bWeek={key:wkKey(sc,w),w:w,yr:sc.yr};
+    var reps=(typeof asrDB!=='undefined'&&asrDB.reports)||{},items=[],empty=0,done=0,allNames=[],k;
+    for(k in sc.kids){(sc.kids[k]||[]).forEach(function(c){if(c&&c.name)allNames.push(c.name);});}
+    sc.teachers.forEach(function(t){
+      if(tf&&t.id!==tf)return;
+      (sc.kids[t.id]||[]).forEach(function(c){
+        var key=sc.yr+'_'+w.th+'_'+t.id+c.id+w.wk,r=reps[key];
+        if(!r||(!r.reflection&&!r.parentFeedback)){empty++;return;}
+        var prevRev=loadJ('xbdKingdom_asr_'+key);
+        if(skip&&prevRev&&prevRev.ts&&(!r._ts||prevRev.ts>r._ts)){done++;return;}
+        items.push({key:key,name:c.name,age:c.age||'',teacher:t.name,cls:t.cls,rep:r});
+      });
+    });
+    /* 代號：這週每位孩子固定一個號碼，重新打包也不會變 */
+    var map=loadJ('xbdKingdom_asrMap_'+bWeek.key)||{codes:{},byKey:{},n:0};
+    items.forEach(function(it){
+      if(!map.byKey[it.key]){map.n++;var code='幼兒'+(map.n<10?'0':'')+map.n;map.byKey[it.key]=code;}
+      var cd=map.byKey[it.key];it.code=cd;
+      map.codes[cd]={key:it.key,name:it.name,teacher:it.teacher,cls:it.cls};
+    });
+    saveJ('xbdKingdom_asrMap_'+bWeek.key,map);
+    var anon=batchAnon(allNames,items);
+    for(var i=0;i<items.length;i+=PART_SIZE)bParts.push(items.slice(i,i+PART_SIZE));
+    $('kgBInfo').innerHTML='這週要送審 <b style="color:#fff;">'+items.length+'</b> 份'
+      +(empty?'，還沒填寫 '+empty+' 份（不會送）':'')+(done?'，已審過 '+done+' 份（跳過）':'')
+      +(bParts.length?'，分成 '+bParts.length+' 批。':'。');
+    var h='';
+    for(i=0;i<bParts.length;i++){
+      var who={};bParts[i].forEach(function(x){who[nick(x.teacher)]=1;});
+      h+='<button class="kg-btn sub" style="width:100%;margin-bottom:6px;text-align:left;padding:10px 14px;" data-part="'+i+'">📋 複製第 '+(i+1)+' 批（'+bParts[i].length+' 份・'+Object.keys(who).join('、')+'）</button>';
+    }
+    $('kgBParts').innerHTML=h;
+    bParts.anon=anon;
+  }
+  function batchAnon(allNames,items){
+    var map=[],seen={},i,n=0;
+    function add(nm,code){nm=String(nm||'').replace(/\s+/g,'');if(!nm||seen[nm])return;seen[nm]=1;
+      map.push([nm,code]);if(nm.length===3)map.push([nm.slice(1),code]);if(nm.length>=3)map.push([nm.slice(-1)+nm.slice(-1),code]);}
+    for(i=0;i<items.length;i++)add(items[i].name,items[i].code);
+    for(i=0;i<allNames.length;i++){if(!seen[String(allNames[i]).replace(/\s+/g,'')]){n++;add(allNames[i],'其他幼兒'+String.fromCharCode(64+((n-1)%26)+1));}}
+    map.sort(function(a,b){return b[0].length-a[0].length;});
+    return function(t){for(var k=0;k<map.length;k++){t=t.split(map[k][0]).join(map[k][1]);}return t;};
+  }
+  function batchPayload(pi){
+    var part=bParts[pi],w=bWeek.w,L=[];
+    L.push('你是小布迪托嬰中心「王國議事廳」的三位市長，要一次審查多份「適齡適性發展記錄」（每週一份，記錄一位幼兒本週的發展活動，會給家長看）。每一份都要審，只做檢查與建議，不要重寫整篇。');
+    L.push('三位市長：');
+    L.push('- 墨墨（用語把關）：錯字、語句不通、不恰當或帶負面標籤的說法、托育專業用語。');
+    L.push('- 點點（完整把關）：活動的領域、指標和名稱是否對得上；省思有沒有具體寫到這位幼兒本週的實際表現，還是每個孩子都通用的套話（同一位老師的幾份內容幾乎一樣也要指出）。');
+    L.push('- 暖暖（家長視角）：家長讀了會不會擔心、誤會或覺得太制式；有家長反饋的話，省思有沒有回應到。');
+    L.push('');
+    L.push('回覆格式（網頁會自動讀取，請嚴格照做）：每一份用「#代號」單獨一行開頭，例如：');
+    L.push('#幼兒01');
+    L.push('判定：可通過／小修後通過／需退回修改');
+    L.push('【墨墨】一句話（沒問題就寫「用語沒問題」）');
+    L.push('【點點】一句話');
+    L.push('【暖暖】一句話');
+    L.push('建議：原句「…」→「…」；原句「…」→「…」（可通過就寫「無」）');
+    L.push('');
+    L.push('全部審完後，最後加一段：');
+    L.push('#總結');
+    L.push('【墨墨】這批共同的用語問題');
+    L.push('【點點】這批共同的完整度問題');
+    L.push('【暖暖】給老師們的整體提醒');
+    L.push('每句 50 字以內。不要用粗體、表格或其他 Markdown。');
+    L.push('');
+    L.push('=== 第 '+(pi+1)+'/'+bParts.length+' 批，共 '+part.length+' 份｜第'+w.th+'主題 第'+w.wk+'週（'+w.dates+'）===');
+    part.forEach(function(it){
+      var acts=[];
+      (it.rep.acts||[]).forEach(function(a){if(!a||a.dom==='國定假日'||(!a.name&&!a.ind))return;acts.push('〔'+(a.dom||'未選領域')+'〕'+(a.name||'（沒寫名稱）')+'｜'+(a.ind||'（沒寫指標）'));});
+      L.push('');
+      L.push('#'+it.code+'｜'+(CLSN[it.cls]||'')+(it.age?'｜年齡層 '+it.age:''));
+      L.push('活動：'+(acts.length?acts.join('；'):'（沒有活動資料）'));
+      L.push('省思：'+(String(it.rep.reflection||'').replace(/\s*\n\s*/g,' ')||'（未填寫）'));
+      L.push('家長反饋：'+(String(it.rep.parentFeedback||'').replace(/\s*\n\s*/g,' ')||'（無）'));
+    });
+    return bParts.anon(L.join('\n'));
+  }
+  function batchParse(raw){
+    raw=String(raw).replace(/\*\*/g,'').replace(/\r/g,'');
+    var re=/^[ \t]*#\s*(幼兒\d{1,3}|總結)[^\n]*$/gm,m,marks=[],out={kids:{},summary:[]};
+    while((m=re.exec(raw))){marks.push({code:m[1],start:m.index,end:re.lastIndex});}
+    for(var i=0;i<marks.length;i++){
+      var body=raw.slice(marks[i].end,i+1<marks.length?marks[i+1].start:raw.length);
+      var says=[],r2=/【([^】]{1,8})】([^\n]*)/g,mm;
+      while((mm=r2.exec(body))){if(mm[2].replace(/\s/g,''))says.push({who:mm[1],text:mm[2].replace(/^\s+|\s+$/g,'')});}
+      if(marks[i].code==='總結'){out.summary=out.summary.concat(says);continue;}
+      var code=marks[i].code.replace(/幼兒(\d)$/,'幼兒0$1');
+      var vm=body.match(/判定[:：]\s*([^\n]+)/),sm=body.match(/建議[:：]\s*([\s\S]*?)(?=\n\s*\n|$)/);
+      out.kids[code]={verdict:vm?vm[1].replace(/^\s+|\s+$/g,''):'',says:says,sugg:sm?sm[1].replace(/^\s+|\s+$/g,''):''};
+    }
+    return out;
+  }
+  function vColor(v){return v.indexOf('退回')>=0?'#e04040':(v.indexOf('小修')>=0?'#f2a03a':(v?'#5aa878':'#6a7ab8'));}
+  function batchStart(){
+    if(!bWeek){toast('請先選週次');return;}
+    var r=batchParse($('kgBPaste').value),codes=Object.keys(r.kids);
+    if(!codes.length){toast('看不懂這段回覆，請確認每份都有「#幼兒01」這樣的開頭');return;}
+    var map=loadJ('xbdKingdom_asrMap_'+bWeek.key)||{codes:{}},res=loadJ('xbdKingdom_asrRes_'+bWeek.key)||{kids:{},summary:[]},miss=0;
+    codes.forEach(function(cd){
+      var info=map.codes[cd];if(!info){miss++;return;}
+      var k=r.kids[cd];k.ts=Date.now();res.kids[cd]=k;
+      /* 同時存成單份送審結果，打開這位孩子的記錄按「審核」也看得到 */
+      var raw=k.says.map(function(s){return '【'+s.who+'】'+s.text;}).join('\n')+'\n【結論】\n判定：'+(k.verdict||'')+'\n'+(k.sugg&&k.sugg!=='無'?k.sugg.split(/；/).map(function(s,i){return (i+1)+'. '+s;}).join('\n'):'沒有需要修改的地方');
+      store('xbdKingdom_asr_'+info.key,JSON.stringify({raw:raw,ts:Date.now()}));
+    });
+    if(r.summary.length)res.summary=r.summary;
+    res.ts=Date.now();
+    saveJ('xbdKingdom_asrRes_'+bWeek.key,res);
+    $('kgBPaste').value='';
+    if(miss)toast('有 '+miss+' 個代號對不上，可能是別週或別台手機打包的');
+    batchShow(true);
+  }
+  var lastRes=null;
+  function countRows(rows){var c={ok:0,fix:0,back:0};rows.forEach(function(r){var v=r.k.verdict||'';if(v.indexOf('退回')>=0)c.back++;else if(v.indexOf('小修')>=0)c.fix++;else c.ok++;});return c;}
+  function batchShow(play){
+    if(!bWeek)return;
+    var res=loadJ('xbdKingdom_asrRes_'+bWeek.key),map=loadJ('xbdKingdom_asrMap_'+bWeek.key)||{codes:{}};
+    if(!res||!Object.keys(res.kids).length){$('kgBRes').style.display='none';return;}
+    var rows=[];
+    Object.keys(res.kids).forEach(function(cd){var info=map.codes[cd];if(!info)return;rows.push({info:info,k:res.kids[cd]});});
+    renderRes(rows,'📜 Claude 審查結果',bWeek.w.dates,res.summary||[],play,'第'+bWeek.w.th+'主題 第'+bWeek.w.wk+'週（'+bWeek.w.dates+'）');
+  }
+  function renderRes(rows,title,when,summary,play,weekLabel){
+    var cnt=countRows(rows);
+    rows.forEach(function(r){var v=r.k.verdict||'';r.o=v.indexOf('退回')>=0?0:(v.indexOf('小修')>=0?1:2);});
+    rows.sort(function(a,b){return a.o-b.o||(a.info.teacher<b.info.teacher?-1:(a.info.teacher>b.info.teacher?1:0));});
+    lastRes={rows:rows,label:weekLabel,title:title};
+    $('kgBResTitle').textContent=title;
+    $('kgBResWhen').textContent=when;
+    $('kgBClear').style.display=title.indexOf('Claude')>=0?'':'none';
+    $('kgBSum').innerHTML='<span class="kg-chip" style="background:#e04040;">退回 '+cnt.back+'</span> <span class="kg-chip" style="background:#f2a03a;">小修 '+cnt.fix+'</span> <span class="kg-chip" style="background:#5aa878;">通過 '+cnt.ok+'</span>';
+    var h='';
+    rows.forEach(function(r,i){
+      h+='<div class="kg-f"><div class="kg-f-hd" data-bx="'+i+'" style="cursor:pointer;"><span class="kg-f-t">'+esc(r.info.name)+' <span style="font-weight:400;font-size:.72rem;color:#9a9cc0;">'+esc(r.info.teacher)+'</span></span><span class="kg-chip" style="background:'+vColor(r.k.verdict)+';">'+esc(r.k.verdict||'未判定')+'</span></div>';
+      h+='<div id="kgBx'+i+'" style="display:'+(r.o<2?'':'none')+';">';
+      r.k.says.forEach(function(s){var m=mayorOf(s.who);h+='<div class="kg-f-s"><b style="color:'+(m?m.color:'#9a9cc0')+';">'+esc(m?m.name:s.who)+'</b>　'+esc(s.text)+'</div>';});
+      if(r.k.sugg&&r.k.sugg!=='無')h+='<ul class="kg-f-d">'+r.k.sugg.split(/；/).map(function(s){return '<li>'+esc(s)+'</li>';}).join('')+'</ul>';
+      h+='</div></div>';
+    });
+    $('kgBList').innerHTML=h;
+    $('kgBRes').style.display='';
+    if(play){
+      resetLines();
+      summary.forEach(function(s){lines.push({mayor:mayorOf(s.who),label:s.who,text:s.text});});
+      lines.push({label:'三位市長',color:cnt.back?'#e04040':(cnt.fix?'#f2a03a':'#5aa878'),text:'這週檢查 '+rows.length+' 份：退回 '+cnt.back+'、小修 '+cnt.fix+'、通過 '+cnt.ok+'。詳細在下面。'});
+      $('kgCtl').style.display='flex';
+      bubble('議事廳','#5aa878','結果出爐！點「下一句」聽市長們的總結。');
+      $('kgBRes').scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  }
+  function resetLines(){stopAuto();pos=-1;lines=[];onFinish=function(){setTalk(null);};$('kgNext').disabled=false;$('kgSkip').disabled=false;$('kgAuto').disabled=false;}
+  function batchCopyList(){
+    if(!lastRes)return;
+    var byT={},L=['【適齡適性修改清單】'+lastRes.label];
+    lastRes.rows.forEach(function(r){var k=r.k;if(!k.verdict||k.verdict.indexOf('可通過')>=0)return;
+      (byT[r.info.teacher]=byT[r.info.teacher]||[]).push('・'+r.info.name+'（'+k.verdict+'）'+(k.sugg&&k.sugg!=='無'?'：'+k.sugg:''));});
+    var ts=Object.keys(byT);
+    if(!ts.length){toast('這週沒有需要修改的');return;}
+    ts.forEach(function(t){L.push('');L.push(t+' 老師');L=L.concat(byT[t]);});
+    copyText(L.join('\n'),'✓ 已複製，可以貼到 LINE');
+  }
+  /* ════════ 自動檢查（不用 AI，手機上直接用規則檢查） ════════ */
+  var NEG=['不乖','很皮','調皮','頑皮','搗蛋','愛哭','很吵','吵鬧','不聽話','講不聽','屢勸不聽','不配合','脾氣差','脾氣不好','霸道','自私','沒禮貌','很兇','很壞','壞孩子','笨','懶','慢吞吞','難帶','黏人','胖胖','問題兒童','故意'];
+  var DIAG=['遲緩','落後','異常','過動','自閉','有問題'];
+  var WORRY=['受傷','撞到','咬人','被咬','咬到','抓傷','抓到臉','流血','跌倒','摔倒','發燒','嘔吐','過敏','紅腫'];
+  var ABS=['一直','總是','完全不','都不','從來'];
+  var SIMP='们这个说时会发动学对进为吗让给过还么没东见现听写读认识爱妈爷问题头脑买卖饭鱼鸟马车门开关长乐习气汉语话谢请欢观觉实宝贝孙儿总经应该样种边级节双两当从众体处备齐产业专万与丽举义书乱争亏亚亲亿仅优伙伞伟传伤价侧债倾储党兴养写军农决况冻净凉减凑凭击划则刚创删别剂剧劝办务励劲劳势区医华协单卫厂厅历压厕县参变号叹吓听启员响团园围图圆圣场坏块坚执扩扫扬护报担拥拦择挂挡挤挥损换据摄摆敌数断无旧显晓暂术机杀杂权条来极构枪柜标栏树档桥梦检楼欧残毕汇汤沟泪洁浅测济浓涂润涨渐温湿满灭灯灵灾炉点烂烟烦烧热牵独环电画疗疯盐监盖盘码础确礼离积称稳穷竞笔笼简粮紧纠红约纪纯纸线练组细织终绍绕绘给络绝统继续绳维绵绿缓编网罗罚职联聪肠肤胜脚脱脸艺苏苹荐药获营萝蓝虑虫虽补装规视览触计订认讨训议记讲许论设访证评识诉词试诗询详误课谁调谈贝负财责败货质购贴贵费贺资赏赔赛赞赢赶跃践轨转轮软轻较辅辆辉输达迁迈运远违连迟适选递遗邮邻释针钟钢钥钱铁铃铅银链销锁锅错键镜闪闭闯闲间闹闻阅队阳阴阶际陆险随隐难雾韩页顶项顺须顾顿预领颜额风飞饮饱饺饼馆驾骂验骑骗鲜鸡鸭鹅齿龙龟';
+  function found(txt,list){var o=[];for(var i=0;i<list.length;i++)if(txt.indexOf(list[i])>=0)o.push(list[i]);return o;}
+  function plain(t){return String(t||'').replace(/\s+/g,'');}
+  function bigrams(t){var o={},n=0;t=plain(t).replace(/[，。、！？～~,.!?：:；;「」（）()]/g,'');for(var i=0;i<t.length-1;i++){var g=t.substr(i,2);o[g]=(o[g]||0)+1;n++;}return {g:o,n:n};}
+  function simil(a,b){
+    var A=bigrams(a),B=bigrams(b),inter=0,k;if(!A.n||!B.n)return 0;
+    for(k in A.g)if(B.g[k])inter+=Math.min(A.g[k],B.g[k]);
+    return 2*inter/(A.n+B.n);
+  }
+  /* 名字變形：全名、去姓的名字、疊字小名 */
+  function nameForms(n){n=plain(n);var o=[];if(!n)return o;o.push(n);if(n.length===3)o.push(n.slice(1));if(n.length>=3)o.push(n.slice(-1)+n.slice(-1));return o;}
+  function hasName(txt,n){var f=nameForms(n);for(var i=0;i<f.length;i++)if(txt.indexOf(f[i])>=0)return f[i];return '';}
+
+  /* 共用文字檢查：回傳 {bad:[],warn:[]}，每筆 {who, msg, fix} */
+  function textRules(label,txt,o){
+    var t=plain(txt),out=o||{bad:[],warn:[]},x;
+    if(!t)return out;
+    x=found(t,NEG);if(x.length)out.bad.push({who:'墨墨',msg:label+'有負面標籤的說法：'+x.join('、'),fix:'把「'+x[0]+'」改成描述實際行為，例如「需要較多時間適應」「情緒較需要陪伴」'});
+    x=found(t,DIAG);if(x.length)out.bad.push({who:'暖暖',msg:label+'用了像診斷的字眼：'+x.join('、')+'，家長看了會很擔心',fix:'改寫成觀察到的具體行為，發展疑慮另外跟主管討論、再當面跟家長說'});
+    var sc=[];for(var i=0;i<t.length;i++){if(SIMP.indexOf(t.charAt(i))>=0&&sc.indexOf(t.charAt(i))<0)sc.push(t.charAt(i));}
+    if(sc.length)out.bad.push({who:'墨墨',msg:label+'混到簡體字：'+sc.slice(0,8).join('、'),fix:'把簡體字改成繁體（可能是輸入法切到簡體）'});
+    var dup=t.match(/(的的|了了|是是|在在|和和|。。|，，|！！！|\?\?)/g);
+    if(dup)out.warn.push({who:'墨墨',msg:label+'有重複的字或標點：'+dup.slice(0,3).join('、'),fix:'刪掉多打的字'});
+    if(/[一-鿿],[一-鿿]/.test(t))out.warn.push({who:'墨墨',msg:label+'中文裡夾了半形逗號「,」',fix:'改成全形「，」'});
+    x=found(t,WORRY);if(x.length)out.warn.push({who:'暖暖',msg:label+'提到'+x.join('、')+'，家長會特別在意',fix:'確認已經另外告知家長，文字寫清楚處理經過'});
+    x=found(t,ABS);if(x.length)out.warn.push({who:'暖暖',msg:label+'用了「'+x.join('」「')+'」這種絕對的說法',fix:'改成「有時候」「目前還在練習」比較溫和'});
+    return out;
+  }
+  function toResult(o){
+    var verdict=o.bad.length?'需退回修改':(o.warn.length?'小修後通過':'可通過');
+    var says=[],by={'墨墨':[],'點點':[],'暖暖':[]},i;
+    for(i=0;i<o.bad.length;i++)by[o.bad[i].who].push('❌ '+o.bad[i].msg);
+    for(i=0;i<o.warn.length;i++)by[o.warn[i].who].push('⚠️ '+o.warn[i].msg);
+    ['墨墨','點點','暖暖'].forEach(function(w){if(by[w].length)says.push({who:w,text:by[w].join('；')});});
+    var fx=o.bad.concat(o.warn).map(function(x){return x.fix;}).filter(function(f,j,a){return f&&a.indexOf(f)===j;});
+    return {verdict:verdict,says:says,sugg:fx.length?fx.join('；'):'無'};
+  }
+  /* 一份適性記錄。peers：同一位老師同一週其他孩子 [{name,ref}] */
+  function checkAsr(d,peers){
+    var o={bad:[],warn:[]},ref=plain(d.ref),i;
+    if(!ref)o.bad.push({who:'點點',msg:'活動省思還沒寫',fix:'補上這週的活動省思'});
+    else if(ref.length<30)o.bad.push({who:'點點',msg:'省思只有 '+ref.length+' 個字，太短',fix:'寫出孩子這週在活動中的具體表現，至少兩三句'});
+    else if(ref.length<60)o.warn.push({who:'點點',msg:'省思 '+ref.length+' 個字，可以再具體一點',fix:'多寫一個孩子實際做到的動作或反應'});
+    var emptyA=0;for(i=0;i<(d.acts||[]).length;i++){var a=d.acts[i];if(!a||a.dom==='國定假日')continue;if(!plain(a.name)||!plain(a.ind))emptyA++;}
+    if(emptyA)o.bad.push({who:'點點',msg:'有 '+emptyA+' 個活動沒寫名稱或指標',fix:'把空白的活動名稱／引導指標補齊'});
+    if(ref&&peers){
+      var own=hasName(ref,d.name),best=0,bestN='';
+      for(i=0;i<peers.length;i++){
+        var p=peers[i];if(plain(p.name)===plain(d.name))continue;
+        var other=hasName(ref,p.name);
+        if(other&&!own)o.bad.push({who:'點點',msg:'省思裡寫的是「'+other+'」，不是這位孩子，可能是從別人那邊複製過來',fix:'確認名字，改成這位孩子的表現'});
+        var s=simil(d.ref,p.ref);if(s>best){best=s;bestN=p.name;}
+      }
+      if(best>=0.85)o.bad.push({who:'點點',msg:'省思跟 '+bestN+' 的幾乎一樣（相似度 '+Math.round(best*100)+'%）',fix:'每個孩子要寫自己的表現，不要整段套用'});
+      else if(best>=0.7)o.warn.push({who:'點點',msg:'省思跟 '+bestN+' 很像（相似度 '+Math.round(best*100)+'%）',fix:'加一兩句只屬於這位孩子的觀察'});
+    }
+    textRules('省思',d.ref,o);
+    if(plain(d.par)){
+      textRules('家長反饋',d.par,{bad:[],warn:[]});
+      if(!/家長|爸|媽|謝謝|回饋|在家|分享/.test(ref))o.warn.push({who:'暖暖',msg:'家長有留言，但省思沒有回應到',fix:'在省思最後回應一句家長的留言'});
+    }
+    return toResult(o);
+  }
+  /* 一篇教保日誌（從畫面讀） */
+  function checkDiaryDom(){
+    var o={bad:[],warn:[]},ref=val('dFReflection'),st=$('dFStudent');
+    if(st&&!st.value)o.bad.push({who:'點點',msg:'還沒選觀察學生',fix:'選一位觀察學生'});
+    if($('dFResource')&&!val('dFResource'))o.warn.push({who:'點點',msg:'教學資源是空的',fix:'填上這個活動用到的教具或資源'});
+    var n=0,inps=document.querySelectorAll('#dFSteps .df-step-inp');for(var i=0;i<inps.length;i++)if(plain(inps[i].value))n++;
+    if($('dFSteps')&&!n)o.bad.push({who:'點點',msg:'活動引導重點一個步驟都沒寫',fix:'至少寫兩三個引導步驟'});
+    if(!plain(ref))o.bad.push({who:'點點',msg:'活動省思還沒寫',fix:'補上今天的活動省思'});
+    else if(plain(ref).length<30)o.bad.push({who:'點點',msg:'省思只有 '+plain(ref).length+' 個字，太短',fix:'寫出孩子在活動中的具體表現'});
+    textRules('省思',ref,o);
+    if(st&&st.value){
+      var me=st.options[st.selectedIndex].text,own=hasName(plain(ref),me);
+      for(i=0;i<st.options.length;i++){var on=st.options[i];if(!on.value||on.selected)continue;var other=hasName(plain(ref),on.text);
+        if(other&&!own){o.bad.push({who:'點點',msg:'省思寫的是「'+other+'」，但觀察學生選的是 '+me,fix:'確認觀察學生有沒有選錯'});break;}}
+    }
+    return toResult(o);
+  }
+  function checkAsrDom(){
+    var acts=[],rows=document.querySelectorAll('#asrFmCard .asr-arow');
+    for(var i=0;i<rows.length;i++)acts.push({dom:val('asrDom'+i),ind:val('asrInd'+i),name:val('asrNm'+i)});
+    var peers=null;
+    safe(function(){
+      var sc=asrScope(),reps=asrDB.reports||{},pre=ctx.key.slice(0,ctx.key.length-String(ctx.wno).length);
+      sc.teachers.forEach(function(t){(sc.kids[t.id]||[]).forEach(function(c){
+        if(c.name!==ctx.childName)return;
+        peers=(sc.kids[t.id]||[]).map(function(x){var r=reps[ctx.key.split('_')[0]+'_'+ctx.themeNo+'_'+t.id+x.id+ctx.wno]||{};return {name:x.name,ref:r.reflection||''};});
+      });});
+    });
+    return checkAsr({name:ctx.childName,ref:val('asrRef'),par:val('asrPar'),acts:acts},peers);
+  }
+  function showLocal(r){
+    $('kgLVerdict').innerHTML='<span class="kg-verdict" style="background:'+vColor(r.verdict)+';">'+esc(r.verdict)+'</span>';
+    var h='';
+    if(!r.says.length)h='<div class="kg-f-s">三位市長都沒找到問題 👍</div>';
+    r.says.forEach(function(s){var m=mayorOf(s.who);h+='<div class="kg-f-s"><b style="color:'+m.color+';">'+m.name+'</b>　'+esc(s.text)+'</div>';});
+    if(r.sugg&&r.sugg!=='無')h+='<ul class="kg-f-d">'+r.sugg.split('；').map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';
+    $('kgLBody').innerHTML=h;
+    $('kgLocal').style.display='';
+  }
+  /* 批次：整週適性記錄直接檢查 */
+  function localBatch(){
+    var sc=asrScope(),w=$('kgBWeek').value==='cur'?sc.cur:sc.prev,tf=$('kgBTeacher').value;
+    if(!w){toast('找不到週次資料');return;}
+    var reps=(typeof asrDB!=='undefined'&&asrDB.reports)||{},rows=[],empty=0;
+    sc.teachers.forEach(function(t){
+      if(tf&&t.id!==tf)return;
+      var cs=sc.kids[t.id]||[];
+      var peers=cs.map(function(c){var r=reps[sc.yr+'_'+w.th+'_'+t.id+c.id+w.wk]||{};return {name:c.name,ref:r.reflection||''};});
+      cs.forEach(function(c){
+        var r=reps[sc.yr+'_'+w.th+'_'+t.id+c.id+w.wk];
+        if(!r||(!r.reflection&&!r.parentFeedback)){empty++;return;}
+        rows.push({info:{name:c.name,teacher:t.name},k:checkAsr({name:c.name,ref:r.reflection,par:r.parentFeedback,acts:r.acts},peers)});
+      });
+    });
+    if(!rows.length){toast('這週還沒有已填寫的適性記錄');return;}
+    var cnt=countRows(rows);
+    var common={'墨墨':0,'點點':0,'暖暖':0};
+    rows.forEach(function(r){r.k.says.forEach(function(s){common[s.who]++;});});
+    var sum=[
+      {who:'墨墨',text:common['墨墨']?'有 '+common['墨墨']+' 份在用字上要修，像負面標籤、簡體字、重複的字。':'用字都沒問題！'},
+      {who:'點點',text:common['點點']?'有 '+common['點點']+' 份內容不夠完整，像太短、跟別人幾乎一樣、名字寫錯。':'每份都寫得夠完整！'},
+      {who:'暖暖',text:common['暖暖']?'有 '+common['暖暖']+' 份家長讀了可能會擔心，或沒回應家長留言。':'家長讀起來都很安心！'}
+    ];
+    renderRes(rows,'🔍 自動檢查結果',w.dates+(empty?'・還有 '+empty+' 份沒寫':''),sum,true,'第'+w.th+'主題 第'+w.wk+'週（'+w.dates+'）');
+  }
+
+  function openBatch(){
+    $('kgBatch').style.display='';
+    batchSetup();batchShow(false);
+    $('kgBatch').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  function openHall(){
+    mode='inspect';ctx=null;
+    $('kgSub').textContent='表單巡視・教保日誌／適齡適性／體溫／清潔／電訪／請假交接';
+    resetView();setTags();openOv();
+    $('kgInboxLbl').textContent='待追蹤';$('kgInbox').textContent='…';
+    bubble('議事廳','#9a9cc0','市長們出門巡視中，正在讀取最新資料…');
+    warmUp();
+    setTimeout(runInspect,1600);
+  }
+
+  /* ════════ 送審模式：單篇教保日誌／適齡適性記錄 ════════ */
   function val(id){var e=$(id);return e?(e.value||'').replace(/^\s+|\s+$/g,''):'';}
+  /* 姓名換代號：focus 那位叫「觀察幼兒」，其他孩子依序「幼兒A、B…」；
+     連「巧芳」這種只寫名字、「芳芳」這種疊字小名也一起換掉 */
+  function makeAnon(names,focus){
+    var code=1,map=[],seen={},i;focus=String(focus||'').replace(/\s+/g,'');
+    if(focus)names=[focus].concat(names);
+    for(i=0;i<names.length;i++){var nm=String(names[i]||'').replace(/\s+/g,'');if(!nm||seen[nm])continue;seen[nm]=1;
+      var c=(nm===focus)?'觀察幼兒':('幼兒'+String.fromCharCode(64+code++));
+      map.push([nm,c]);
+      if(nm.length===3)map.push([nm.slice(1),c]);
+      if(nm.length>=3)map.push([nm.slice(-1)+nm.slice(-1),c]);
+    }
+    map.sort(function(a,b){return b[0].length-a[0].length;});
+    return function(t){for(var k=0;k<map.length;k++){t=t.split(map[k][0]).join(map[k][1]);}return t;};
+  }
+  var FORMAT='回覆格式（很重要，網頁會自動讀取）：每句發言獨立一行，以【名字】開頭。先三位各說一次重點，再互相回應 2～3 句，最後一段以【結論】開頭：\n'
+      +'【墨墨】……\n【點點】……\n【暖暖】……\n【點點】（回應）……\n【結論】\n判定：可通過／小修後通過／需退回修改\n1. 原句「…」→ 建議「…」（理由）\n2. ……\n\n'
+      +'每句發言 60 字以內，口吻親切。沒有問題的地方不用硬挑。不要用粗體或其他 Markdown。\n\n';
+  function buildAsrPayload(){
+    var anon=makeAnon(ctx.allNames||[],ctx.childName),acts=[],i;
+    var rows=document.querySelectorAll('#asrFmCard .asr-arow');
+    for(i=0;i<rows.length;i++){
+      var d=val('asrDom'+i),ind=val('asrInd'+i),nm=val('asrNm'+i);
+      if((!d&&!ind&&!nm)||d==='國定假日')continue;
+      acts.push((acts.length+1)+'. 〔'+(d||'未選領域')+'〕'+(nm||'（沒寫活動名稱）')+'｜指標：'+(ind||'（沒寫）'));
+    }
+    var t='你是小布迪托嬰中心「王國議事廳」的三位市長，要一起審查一份托育人員寫的「適齡適性發展記錄」（每週一份，記錄一位幼兒本週的發展活動，會給家長看）。只做檢查與建議，不要重寫整篇。\n'
+      +'三位市長：\n'
+      +'- 墨墨（用語把關）：錯字、語句不通、不恰當或帶負面標籤的說法、托育專業用語。\n'
+      +'- 點點（完整把關）：每個活動的發展領域、引導指標和活動名稱是否對得上；省思有沒有具體寫到這位幼兒本週的實際表現與進步，而不是每個孩子都通用的套話；年齡層是否合理。\n'
+      +'- 暖暖（家長視角）：家長讀起來的感受，哪些句子可能讓家長擔心、誤會或覺得太制式；如果有家長反饋，老師的省思有沒有回應到。\n\n'
+      +FORMAT
+      +'=== 適齡適性記錄 ===\n'
+      +'班級：'+ctx.clsLabel+'\n'
+      +'幼兒：觀察幼兒（已匿名）'+(ctx.age?'，年齡層 '+ctx.age:'')+'\n'
+      +'主題：第'+ctx.themeNo+'主題 '+(ctx.theme||'')+'\n'
+      +'週次：第'+ctx.wno+'週'+(ctx.dates?'（'+ctx.dates+'）':'')+'\n'
+      +'本週活動：\n'+(acts.length?acts.join('\n'):'（沒有活動）')+'\n'
+      +'活動省思：\n'+(val('asrRef')||'（未填寫）')+'\n'
+      +'家長反饋：\n'+(val('asrPar')||'（無）');
+    return anon(t);
+  }
   function buildPayload(){
+    if(ctx&&ctx.kind==='asr')return buildAsrPayload();
     var sel=$('dFStudent'),names=[],selName='',i;
     if(sel){for(i=0;i<sel.options.length;i++){if(!sel.options[i].value)continue;
       names.push(sel.options[i].text);if(sel.options[i].selected)selName=sel.options[i].text;}}
@@ -24180,7 +24923,7 @@ var KINGDOM=(function(){
       var c=(nm===selName.replace(/\s+/g,''))?'觀察幼兒':('幼兒'+String.fromCharCode(64+code++));
       map.push([nm,c]);
       if(nm.length===3)map.push([nm.slice(1),c]);
-      if(nm.length>=3)map.push([nm.slice(-1)+nm.slice(-1),c]); /* 疊字小名，如「芳芳」 */
+      if(nm.length>=3)map.push([nm.slice(-1)+nm.slice(-1),c]);
     }
     map.sort(function(a,b){return b[0].length-a[0].length;});
     function anon(t){for(var k=0;k<map.length;k++){t=t.split(map[k][0]).join(map[k][1]);}return t;}
@@ -24189,12 +24932,10 @@ var KINGDOM=(function(){
     var a=(ctx&&ctx.act)||{};
     var t='你是小布迪托嬰中心「王國議事廳」的三位市長，要一起審查一篇托育人員寫的教保日誌。只做檢查與建議，不要重寫整篇。\n'
       +'三位市長：\n'
-      +'- 墨墨（用語市長）：錯字、語句不通、不恰當或帶負面標籤的說法、托育專業用語。\n'
-      +'- 點點（完整市長）：對照活動名稱、領域與指標，檢查教學資源、引導步驟、省思是否完整具體，有沒有寫到孩子的實際表現。\n'
-      +'- 暖暖（家長市長）：站在家長角度，哪些句子可能讓家長擔心、誤會，或讀起來太制式。\n\n'
-      +'回覆格式（很重要，網頁會自動讀取）：每句發言獨立一行，以【名字】開頭。先三位各說一次重點，再互相回應 2～3 句，最後一段以【結論】開頭：\n'
-      +'【墨墨】……\n【點點】……\n【暖暖】……\n【點點】（回應）……\n【結論】\n判定：可通過／小修後通過／需退回修改\n1. 原句「…」→ 建議「…」（理由）\n2. ……\n\n'
-      +'每句發言 60 字以內，口吻親切。沒有問題的地方不用硬挑。不要用粗體或其他 Markdown。\n\n'
+      +'- 墨墨（用語把關）：錯字、語句不通、不恰當或帶負面標籤的說法、托育專業用語。\n'
+      +'- 點點（完整把關）：對照活動名稱、領域與指標，檢查教學資源、引導步驟、省思是否完整具體，有沒有寫到孩子的實際表現。\n'
+      +'- 暖暖（家長視角）：站在家長角度，哪些句子可能讓家長擔心、誤會，或讀起來太制式。\n\n'
+      +FORMAT
       +'=== 日誌內容 ===\n'
       +'班級：'+(ctx?ctx.clsLabel+'（'+ctx.age+'）':'')+'\n'
       +'日期：'+(ctx?'星期'+ctx.dow+' '+ctx.ymd:'')+'\n'
@@ -24208,8 +24949,7 @@ var KINGDOM=(function(){
       +'活動省思：\n'+(val('dFReflection')||'（未填寫）');
     return anon(t);
   }
-
-  function copyText(t){
+  function copyText(t,okMsg){
     var done=false;
     var ta=document.createElement('textarea');
     ta.value=t;ta.setAttribute('readonly','');
@@ -24221,13 +24961,11 @@ var KINGDOM=(function(){
     try{done=document.execCommand('copy');}catch(e){}
     document.body.removeChild(ta);
     if(!done&&navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(t).then(function(){toast('✓ 已複製，到 Claude App 貼上');},function(){window.prompt('請手動複製：',t);});
+      navigator.clipboard.writeText(t).then(function(){toast(okMsg);},function(){window.prompt('請手動複製：',t);});
       return;
     }
-    if(done)toast('✓ 已複製，到 Claude App 貼上');else window.prompt('請手動複製：',t);
+    if(done)toast(okMsg);else window.prompt('請手動複製：',t);
   }
-
-  /* ── 解析 Claude 回覆 ── */
   function parse(raw){
     raw=String(raw).replace(/\*\*/g,'').replace(/\r/g,'');
     var re=/【([^】]{1,12})】/g,m,marks=[];
@@ -24241,26 +24979,8 @@ var KINGDOM=(function(){
     }
     return {lines:out,concl:concl};
   }
-
-  function stopAuto(){if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}$('kgAuto').textContent='⏯ 自動播放';}
-  function show(i){
-    pos=i;
-    var L=lines[i];
-    if(L){
-      var m=L.mayor;
-      setTalk(m?m.id:null);
-      bubble(m?(m.name+'・'+m.role):L.label,m?m.color:'#9a9cc0',L.text);
-      var li=document.createElement('li');
-      li.innerHTML='<b style="color:'+(m?m.color:'#9a9cc0')+';">'+esc(m?m.name:L.label)+'</b>'+esc(L.text);
-      $('kgLog').appendChild(li);$('kgLogCard').style.display='';
-    }
-    if(i>=lines.length-1){finish();}
-  }
-  function next(){if(pos<lines.length-1)show(pos+1);else finish();}
-  function finish(){
-    stopAuto();
-    $('kgNext').disabled=true;$('kgSkip').disabled=true;$('kgAuto').disabled=true;
-    if(!conclusion){return;}
+  function reviewFinish(){
+    if(!conclusion)return;
     setTalk(null);
     var vm=conclusion.match(/判定[:：]\s*([^\n]+)/),v=vm?vm[1].replace(/^\s+|\s+$/g,''):'';
     var col=v.indexOf('退回')>=0?'#e04040':(v.indexOf('小修')>=0?'#f2a03a':'#5aa878');
@@ -24269,68 +24989,85 @@ var KINGDOM=(function(){
     $('kgConcl').textContent=vm?conclusion.replace(vm[0],'').replace(/^\s+/,''):conclusion;
     $('kgConclCard').style.display='';
   }
-  function skipAll(){stopAuto();while(pos<lines.length-1){show(pos+1);}finish();}
-  function toggleAuto(){
-    if(autoTimer){stopAuto();return;}
-    $('kgAuto').textContent='⏸ 暫停';
-    (function tick(){
-      if(pos>=lines.length-1){finish();return;}
-      next();
-      var L=lines[pos],ms=1800+(L?L.text.length*70:0);
-      autoTimer=setTimeout(tick,Math.min(ms,6500));
-    })();
-  }
-
-  function resetView(){
-    stopAuto();pos=-1;lines=[];conclusion='';
-    $('kgLog').innerHTML='';$('kgLogCard').style.display='none';$('kgConclCard').style.display='none';
-    $('kgCtl').style.display='none';$('kgNext').disabled=false;$('kgSkip').disabled=false;$('kgAuto').disabled=false;
-    setTalk(null);
-  }
   function startMeeting(raw,fromSave){
     var r=parse(raw);
     if(!r.lines.length&&!r.concl){toast('看不懂這段回覆，請確認有【墨墨】【點點】【暖暖】【結論】');return;}
     resetView();
-    lines=r.lines;conclusion=r.concl;
-    if(ctx&&!fromSave)store('xbdKingdom_'+ctx.key,JSON.stringify({raw:raw,ts:Date.now()}));
-    $('kgStep').style.display='none';$('kgAgain').style.display='';
+    lines=r.lines;conclusion=r.concl;onFinish=reviewFinish;
+    var loc2=safe(function(){return ctx.kind==='asr'?checkAsrDom():checkDiaryDom();},null);if(loc2)showLocal(loc2);
+    if(ctx&&!fromSave)store(ctx.storeKey,JSON.stringify({raw:raw,ts:Date.now()}));
+    $('kgAgain').style.display='';
     $('kgCtl').style.display='flex';$('kgInbox').textContent='0';
     bubble('議事廳','#5aa878','開會囉！點「下一句」或「自動播放」。');
     if(fromSave)skipAll();
   }
-
+  function openReview(subtitle,noun){
+    mode='review';
+    $('kgSub').textContent=subtitle;
+    resetView();setTags();
+    $('kgPaste').value='';$('kgInboxLbl').textContent='收件箱';
+    openOv();
+    var saved=null;try{saved=JSON.parse(store(ctx.storeKey)||'null');}catch(e){}
+    var loc=safe(function(){return ctx.kind==='asr'?checkAsrDom():checkDiaryDom();},null);
+    if(saved&&saved.raw){
+      startMeeting(saved.raw,true);
+      if(loc)showLocal(loc);
+      var d=new Date(saved.ts);
+      bubble('議事廳','#9a9cc0','這份'+noun+'在 '+(d.getMonth()+1)+'/'+d.getDate()+' '+d.getHours()+':'+p2(d.getMinutes())+' 審過了，結論在下面。老師改過的話可以重新送審。');
+    }else{
+      $('kgStep').style.display='';
+      $('kgInbox').textContent='1';
+      if(loc){
+        showLocal(loc);
+        resetLines();
+        loc.says.forEach(function(x){lines.push({mayor:mayorOf(x.who),label:x.who,text:x.text});});
+        lines.push({label:'三位市長',color:vColor(loc.verdict),text:'自動檢查結果：'+loc.verdict+(loc.says.length?'，修改建議在下面。':'，沒找到問題！')});
+        $('kgCtl').style.display='flex';
+        bubble('議事廳',vColor(loc.verdict),'自動檢查完成：'+loc.verdict+'。點「下一句」聽市長說明。');
+      }else bubble('議事廳','#5aa878','有一份'+noun+'送到收件箱了！先按「複製送審內容」。');
+    }
+  }
   function open(){
     ctx=(typeof DIARY!=='undefined'&&DIARY.getCtx)?DIARY.getCtx():null;
     if(!ctx){alert('請先打開一篇日誌再送審');return;}
-    $('kgSub').textContent=ctx.clsLabel+'・星期'+ctx.dow+' '+ctx.ymd+'・'+((ctx.act&&ctx.act.name)||'');
-    resetView();
-    $('kgPaste').value='';
-    $('kgOv').className='on';
-    document.body.style.overflow='hidden';
-    var saved=null;try{saved=JSON.parse(store('xbdKingdom_'+ctx.key)||'null');}catch(e){}
-    if(saved&&saved.raw){
-      startMeeting(saved.raw,true);
-      var d=new Date(saved.ts);
-      bubble('議事廳','#9a9cc0','這篇在 '+(d.getMonth()+1)+'/'+d.getDate()+' '+d.getHours()+':'+('0'+d.getMinutes()).slice(-2)+' 審過了，結論在下面。老師改過的話可以重新送審。');
-    }else{
-      $('kgStep').style.display='';$('kgAgain').style.display='none';
-      $('kgInbox').textContent='1';
-      bubble('議事廳','#5aa878','有一篇日誌送到收件箱了！先按「複製送審內容」。');
-    }
+    ctx.kind='diary';ctx.storeKey='xbdKingdom_'+ctx.key;
+    openReview('日誌送審・'+ctx.clsLabel+'・星期'+ctx.dow+' '+ctx.ymd+'・'+((ctx.act&&ctx.act.name)||''),'日誌');
   }
-  function close(){stopAuto();$('kgOv').className='';document.body.style.overflow='';}
+  function openAsr(){
+    ctx=(typeof ASR!=='undefined'&&ASR.getCtx)?ASR.getCtx():null;
+    if(!ctx){alert('請先打開一份適齡適性記錄再送審');return;}
+    ctx.kind='asr';ctx.storeKey='xbdKingdom_asr_'+ctx.key;
+    openReview('適性送審・'+ctx.clsLabel+'・'+ctx.childName+'・第'+ctx.themeNo+'主題 第'+ctx.wno+'週','適性記錄');
+  }
 
   function init(){
     drawStage();
     $('kgClose').addEventListener('click',close);
-    $('kgCopy').addEventListener('click',function(){copyText(buildPayload());});
+    $('kgCopy').addEventListener('click',function(){copyText(buildPayload(),'✓ 已複製，到 Claude App 貼上');});
     $('kgStart').addEventListener('click',function(){startMeeting($('kgPaste').value,false);});
     $('kgNext').addEventListener('click',function(){stopAuto();next();});
     $('kgSkip').addEventListener('click',skipAll);
     $('kgAuto').addEventListener('click',toggleAuto);
+    $('kgReInspect').addEventListener('click',openHall);
+    $('kgCopyRep').addEventListener('click',function(){copyText(reportText(),'✓ 已複製，可以貼到 LINE');});
+    $('kgRep').addEventListener('click',function(e){
+      var t=e.target;
+      if(t.getAttribute('data-go')){goTo(t.getAttribute('data-go'));return;}
+      if(t.getAttribute('data-more')){var el=$('kgMore'+t.getAttribute('data-more'));if(el)el.style.display='';t.style.display='none';}
+    });
+    $('kgOpenBatch').addEventListener('click',openBatch);
+    $('kgBWeek').addEventListener('change',function(){batchBuild();batchShow(false);});
+    $('kgBTeacher').addEventListener('change',batchBuild);
+    $('kgBSkip').addEventListener('change',batchBuild);
+    $('kgBStart').addEventListener('click',batchStart);
+    $('kgBLocal').addEventListener('click',localBatch);
+    $('kgBCopy').addEventListener('click',batchCopyList);
+    $('kgBClear').addEventListener('click',function(){if(!bWeek||!confirm('清除這週的批次審查結果？（不會動到老師寫的內容）'))return;store('xbdKingdom_asrRes_'+bWeek.key,null);$('kgBRes').style.display='none';});
+    $('kgBParts').addEventListener('click',function(e){var t=e.target;while(t&&t!==this&&!t.getAttribute('data-part'))t=t.parentNode;if(t&&t.getAttribute&&t.getAttribute('data-part')!==null){copyText(batchPayload(parseInt(t.getAttribute('data-part'),10)),'✓ 已複製第 '+(parseInt(t.getAttribute('data-part'),10)+1)+' 批，到 Claude App 貼上');t.style.opacity='.55';}});
+    $('kgBList').addEventListener('click',function(e){var t=e.target;while(t&&t!==this&&!t.getAttribute('data-bx'))t=t.parentNode;if(t&&t.getAttribute&&t.getAttribute('data-bx')!==null){var el=$('kgBx'+t.getAttribute('data-bx'));if(el)el.style.display=el.style.display==='none'?'':'none';}});
     $('kgRedo').addEventListener('click',function(){
-      if(ctx)store('xbdKingdom_'+ctx.key,null);
-      resetView();$('kgStep').style.display='';$('kgAgain').style.display='none';$('kgPaste').value='';
+      if(ctx)store(ctx.storeKey,null);
+      resetView();$('kgStep').style.display='';$('kgPaste').value='';
       $('kgInbox').textContent='1';bubble('議事廳','#5aa878','重新送審：先按「複製送審內容」。');
     });
     var bar=$('diaryBar');
@@ -24340,9 +25077,19 @@ var KINGDOM=(function(){
       b.addEventListener('click',open);
       bar.appendChild(b);
     }
+    var abar=document.querySelector('#asrFmOv .asr-form-bbar'),asave=$('asrFmSave');
+    if(abar){
+      var ab=document.createElement('button');
+      ab.type='button';ab.textContent='🏰 審核';
+      ab.style.cssText='background:#5a4fa8;border:none;color:#fff;padding:5px 11px;border-radius:8px;font-size:.74rem;font-weight:700;cursor:pointer;font-family:inherit;';
+      ab.addEventListener('click',openAsr);
+      if(asave)abar.insertBefore(ab,asave);else abar.appendChild(ab);
+    }
+    var card=$('kgHomeCard');
+    if(card)card.addEventListener('click',openHall);
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
-  return {open:open,close:close,_parse:parse};
+  return {open:open,openAsr:openAsr,openHall:openHall,openBatch:openBatch,_bparse:batchParse,_checkAsr:checkAsr,_bpayload:function(i){return batchPayload(i);},close:close,_parse:parse,_findings:function(){return findings;}};
 })();
 </script>
 
