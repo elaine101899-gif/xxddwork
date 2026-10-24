@@ -10,7 +10,7 @@
 <script>
 /* 強制瀏覽器載入最新版：把版本號加進 URL */
 (function(){
-  var BUILD='20261024095000';
+  var BUILD='20261024103000';
   if(!BUILD||BUILD.indexOf('BUILD_TS')>-1)return;
   /* 網址如果帶 #hash（例如隱藏的登入試用頁 #logintest），一定要先把 hash
      切掉再接 ?_v=，不然 ?_v= 會被瀏覽器當成 hash 的一部分（不是真正的查詢
@@ -2068,6 +2068,7 @@ function _applyRoleUI(){
   });
   var ledgerCard=document.getElementById('accountingCardLedger');
   if(ledgerCard)ledgerCard.style.display=(CURRENT_ROLE==='owner')?'flex':'none';
+  if(typeof KINGDOM!=='undefined'&&KINGDOM.applyRole)KINGDOM.applyRole();
 }
 /* 防呆：就算有人用舊書籤、瀏覽器上一頁等方式繞過卡片直接想跳頁，GO() 這裡
    還是會依角色擋下來，不是只靠「卡片沒顯示」這一層。總帳另外在 GO() 裡
@@ -2709,7 +2710,7 @@ function _rosterKidsAsOf(cls,dateStr){
         <div class="hcard-arr">&#x203A;</div>
       </div>
     </div>
-    <div class="hcard c-pur" id="kgHomeCard">
+    <div class="hcard c-pur" id="kgHomeCard" style="display:none;">
       <div class="hcard-in">
         <div class="hcard-bar"></div>
         <div class="hcard-img" style="display:flex;align-items:center;justify-content:center;font-size:2.2rem;">&#x1F3F0;</div>
@@ -4034,7 +4035,7 @@ function _rosterKidsAsOf(cls,dateStr){
       </div>
       <div id="accountingCardLedger" onclick="GO('ledger')" style="display:none;align-items:center;gap:14px;background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 2px 8px rgba(0,0,0,.08);cursor:pointer;border-left:5px solid #5a4aa8;">
         <span style="font-size:1.8rem;">&#x1F4D1;</span>
-        <div><div style="font-weight:800;font-size:1rem;color:#3a2a78;">總帳</div><div style="font-size:.78rem;color:#888;margin-top:2px;">結合零用金明細的內部總帳</div></div>
+        <div><div style="font-weight:800;font-size:1rem;color:#3a2a78;">金庫</div><div style="font-size:.78rem;color:#888;margin-top:2px;">結合零用金明細的內部金庫</div></div>
         <span style="margin-left:auto;color:#ccc;font-size:1.2rem;">&#x203A;</span>
       </div>
     </div>
@@ -4080,7 +4081,7 @@ function _rosterKidsAsOf(cls,dateStr){
 <div class="pg" id="pg-ledger">
   <div class="bbar">
     <button class="bbtn" onclick="LEDGER.back()">&#x2190; 返回</button>
-    <span class="btitle" id="ledgerTopTitle">總帳</span>
+    <span class="btitle" id="ledgerTopTitle">金庫</span>
   </div>
   <div style="padding:20px 16px;">
     <div style="font-size:.8rem;color:#888;margin-bottom:14px;">請選擇項目</div>
@@ -4100,7 +4101,7 @@ function _rosterKidsAsOf(cls,dateStr){
 </div>
 <div class="pg" id="pg-ledger-cash">
   <div class="bbar">
-    <button class="bbtn" onclick="LEDGER.backToTop()">&#x2190; 總帳</button>
+    <button class="bbtn" onclick="LEDGER.backToTop()">&#x2190; 金庫</button>
     <span class="btitle" id="ledgerCashTitle">零用金</span>
   </div>
   <div style="padding:14px 16px 40px;" id="ledgerHubWrap">
@@ -4110,7 +4111,7 @@ function _rosterKidsAsOf(cls,dateStr){
 <div class="pg" id="pg-ledger-cash-detail">
   <div class="bbar">
     <button class="bbtn" onclick="LEDGER.backToCashHub()">&#x2190; 零用金</button>
-    <span class="btitle" id="ledgerDetailTitle">總帳明細</span>
+    <span class="btitle" id="ledgerDetailTitle">金庫明細</span>
   </div>
   <div style="padding:14px 16px 40px;" id="ledgerWrap">
     <div style="color:#aaa;text-align:center;padding:40px 0;font-size:.9rem;">載入中…</div>
@@ -4118,7 +4119,7 @@ function _rosterKidsAsOf(cls,dateStr){
 </div>
 <div class="pg" id="pg-ledger-checkout">
   <div class="bbar">
-    <button class="bbtn" onclick="CHECKOUT.backToHub();LEDGER.backToTop();">&#x2190; 總帳</button>
+    <button class="bbtn" onclick="CHECKOUT.backToHub();LEDGER.backToTop();">&#x2190; 金庫</button>
     <span class="btitle" id="ledgerCheckoutTitle">結帳</span>
   </div>
   <div style="padding:14px 16px 40px;" id="ledgerCheckoutWrap">
@@ -4144,7 +4145,7 @@ function _rosterKidsAsOf(cls,dateStr){
 </div>
 <div class="asr-modal" id="ledgerNewOv">
   <div class="asr-mbox" style="max-width:420px;">
-    <h3>&#x2795; 新增總帳期別</h3>
+    <h3>&#x2795; 新增金庫期別</h3>
     <div style="font-size:.78rem;color:#888;margin-bottom:6px;">期別名稱</div>
     <input type="text" class="asr-mi" id="ledgerNewLabel" placeholder="例如：115年11/08~12/07">
     <div style="font-size:.78rem;color:#888;margin:10px 0 6px;">開始日期</div>
@@ -4736,7 +4737,7 @@ function GO(id, _roleRetry) {
      點進去還是要再輸入一次密碼才真的放行——owner 自己要求的雙重保險，
      跟其他頁面「身分對了就直接進去」不一樣。 */
   if (id === 'ledger' && PWGATE.need('ledger')) {
-    PWGATE.prompt('ledger','總帳','92800', function(){ GO('ledger'); });
+    PWGATE.prompt('ledger','金庫','92800', function(){ GO('ledger'); });
     return;
   }
   var pgs = document.getElementsByClassName('pg');
@@ -6298,6 +6299,7 @@ var _fbAsrRef=null;
 function _stripPhotos(rep){
   var copy={};
   for(var k in rep){if(k!=='photos')copy[k]=rep[k];}
+  if(rep.photos){var ph={};for(var pk in rep.photos){var pa=rep.photos[pk]||[];ph[pk]=(pa[0]?1:0)+(pa[1]?1:0);}copy._ph=ph;}
   return copy;
 }
 function _pushAsrReport(key,retryCount){
@@ -19177,7 +19179,7 @@ function _pettyCashPrintHTML(p,t){
    那一刻）都要呼叫這個函式重新標一次。 */
 function _updateLedgerTitles(){
   var label=(COMPANIES[CURRENT_COMPANY]||COMPANIES.xbd).short;
-  var map={ledgerTopTitle:'總帳',ledgerCashTitle:'零用金',ledgerCheckoutTitle:'結帳'};
+  var map={ledgerTopTitle:'金庫',ledgerCashTitle:'零用金',ledgerCheckoutTitle:'結帳'};
   Object.keys(map).forEach(function(id){
     var el=document.getElementById(id);
     if(el)el.textContent=map[id]+'（'+label+'）';
@@ -19382,7 +19384,7 @@ var LEDGER=(function(){
     if(!wrap||!curPid)return;
     var p=periods[curPid];
     if(!p){backToCashHub();return;}
-    document.getElementById('ledgerDetailTitle').textContent=(p.label||'總帳明細')+'（'+(COMPANIES[CURRENT_COMPANY]||COMPANIES.xbd).short+'）';
+    document.getElementById('ledgerDetailTitle').textContent=(p.label||'金庫明細')+'（'+(COMPANIES[CURRENT_COMPANY]||COMPANIES.xbd).short+'）';
     var rows=combinedRows(p);
     var t=totals(rows);
     var open=parseFloat(p.openBalance)||0;
@@ -19396,7 +19398,7 @@ var LEDGER=(function(){
     h+='<button class="cln-sig-btn" style="padding:9px 14px;background:#c0392b;" onclick="LEDGER.deletePeriod(\''+curPid+'\')">&#x1F5D1;&#xFE0F; 刪除此期</button>';
     h+='</div>';
     h+='<div class="df-sec" style="overflow-x:auto;">';
-    h+='<div class="df-lbl">總帳明細（灰字是零用金自動帶入，唯讀；要改請回零用金修改）<button class="cln-sig-btn" style="float:right;" onclick="LEDGER.addRow()">&#xFF0B; 新增調整項目</button></div>';
+    h+='<div class="df-lbl">金庫明細（灰字是零用金自動帶入，唯讀；要改請回零用金修改）<button class="cln-sig-btn" style="float:right;" onclick="LEDGER.addRow()">&#xFF0B; 新增調整項目</button></div>';
     h+='<table class="cln-table"><thead><tr><th>月日</th><th>科目</th><th>摘要</th><th>收入</th><th>支出</th><th>餘額</th><th></th></tr></thead><tbody>';
     h+='<tr style="background:#f7f7fa;"><td colspan="5" style="text-align:right;font-weight:700;">起始餘額</td><td style="font-weight:700;">'+open.toLocaleString()+'</td><td></td></tr>';
     if(!rows.length){
@@ -24227,6 +24229,14 @@ var KINGDOM=(function(){
   var mode='inspect', lines=[], conclusion='', pos=-1, autoTimer=null, ctx=null, findings=[], onFinish=null;
 
   function $(id){return document.getElementById(id);}
+  /* 王國議事廳只有園長（owner）和行政（admin）看得到，老師看不到 */
+  function isOwner(){return typeof CURRENT_ROLE!=='undefined'&&(CURRENT_ROLE==='owner'||CURRENT_ROLE==='admin');}
+  var _entryBtns=[];
+  function applyRole(){
+    var on=isOwner(),i;
+    for(i=0;i<_entryBtns.length;i++)_entryBtns[i].style.display=on?'':'none';
+    if(!on&&$('kgOv').className==='on')close();
+  }
   function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
   function toast(m){var t=$('kgToast');t.textContent=m;t.style.display='block';setTimeout(function(){t.style.display='none';},1800);}
   function store(k,v){try{if(v===undefined)return localStorage.getItem(k);if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,v);}catch(e){return null;}}
@@ -24359,37 +24369,18 @@ var KINGDOM=(function(){
     out.sort(function(a,b){return a.start-b.start;});
     return out;
   }
+  /* 適齡適性：不管誰沒寫，只檢查「已經寫好的」內容能不能列印 */
   function chkAsr(todayD){
-    var yr=curYr(),weeks=allWeeks(yr),ci=-1,i,t0=new Date(todayD.getFullYear(),todayD.getMonth(),todayD.getDate());
-    for(i=0;i<weeks.length;i++){if(weeks[i].start<=t0)ci=i;}
-    if(ci<0)return {mayor:'dot',icon:'📋',title:'適齡適性記錄',lv:'info',sum:'這學期還沒開始。',det:[],go:'asr'};
-    var cur=weeks[ci],inCur=(t0-cur.start)<7*86400000,prev=inCur?weeks[ci-1]:cur;
-    var ros=safe(function(){return ROSTER.rosterAsOf(yr,isoOf(todayD));},null);
-    var pl=window['_asrPreload'+yr]||{};
-    var teachers=(ros&&ros.teachers&&ros.teachers.length)?ros.teachers:(pl.teachers||[]);
-    var kids=(ros&&ros.children)?ros.children:(pl.children||{});
-    var reps=(typeof asrDB!=='undefined'&&asrDB.reports)||{};
-    function tally(w){
-      var r={done:0,total:0,miss:[]};if(!w)return r;
-      teachers.forEach(function(t){
-        var cs=kids[t.id]||[],m=[];
-        cs.forEach(function(c){r.total++;if(reps[yr+'_'+w.th+'_'+t.id+c.id+w.wk])r.done++;else m.push(c.name);});
-        if(m.length)r.miss.push({t:t.name,n:m.length});
-      });
-      return r;
-    }
-    var P=tally(prev),C=inCur?tally(cur):null,det=[],lv='ok',sum='';
-    if(prev&&P.miss.length){
-      lv='bad';
-      sum='上週（'+prev.dates+'）還有 '+(P.total-P.done)+' 位幼兒沒寫。';
-      P.miss.forEach(function(x){det.push('上週 '+x.t+'：'+x.n+' 位沒寫');});
-    }else if(prev){sum='上週 '+P.total+' 份全部完成！';}
-    if(C){
-      sum+=' 本週進度 '+C.done+'/'+C.total+'。';
-      if(lv==='ok'&&C.done<C.total)lv=(todayD.getDay()===5||todayD.getDay()===6||todayD.getDay()===0)?'warn':'info';
-      C.miss.forEach(function(x){det.push('本週 '+x.t+'：還有 '+x.n+' 位');});
-    }
-    return {mayor:'dot',icon:'📋',title:'適齡適性記錄',lv:lv,sum:sum.replace(/^\s+/,''),det:det,go:'asr'};
+    var sc=safe(asrScope,null);
+    var w=sc?(targetWhich()==='cur'?sc.cur:(sc.prev||sc.cur)):null;
+    if(!w)return {mayor:'dot',icon:'📋',title:'適齡適性記錄',lv:'info',sum:'這學期還沒開始。',det:[],go:'kg-batch'};
+    var R=asrWeekRows(sc,w,''),c=countRows(R.rows),det=[];
+    if(!R.rows.length)return {mayor:'dot',icon:'📋',title:'適齡適性記錄（'+w.dates+'）',lv:'info',sum:'這週還沒有寫好的適性記錄可以檢查。',det:[],go:'kg-batch'};
+    R.rows.forEach(function(r){var v=r.k.verdict;if(v.indexOf('退回')<0&&v.indexOf('小修')<0)return;
+      var why=(r.k.says[0]&&r.k.says[0].text||'').replace(/^[❌⚠️\s]+/,'').split('；')[0];
+      det.push(nick(r.info.teacher)+'｜'+r.info.name+'：'+(v.indexOf('退回')>=0?'退回':'小修')+'（'+why+'）');});
+    return {mayor:'dot',icon:'📋',title:'適齡適性記錄（'+w.dates+'）',lv:c.back?'bad':(c.fix?'warn':'ok'),
+      sum:R.rows.length+' 份：可以列印 '+c.ok+(c.fix?'、小修 '+c.fix:'')+(c.back?'、退回 '+c.back:'')+'。',det:det,go:'kg-batch'};
   }
 
   /* 體溫：今天＋本週已過的平日；順便看有沒有發燒 */
@@ -24471,6 +24462,7 @@ var KINGDOM=(function(){
   }
 
   function goTo(id){
+    if(id==='kg-batch'){openBatch();localBatch();return;}
     close();
     if(id==='clean'){GO('clean');}
     else GO(id);
@@ -24539,6 +24531,8 @@ var KINGDOM=(function(){
       teachers:(ros&&ros.teachers&&ros.teachers.length)?ros.teachers:(pl.teachers||[]),
       kids:(ros&&ros.children)?ros.children:(pl.children||{})};
   }
+  /* 要檢查哪一週：週五～週日檢查「這週」，週一～週四檢查「上週」（老師通常週末前寫完） */
+  function targetWhich(){var d=new Date().getDay();return (d===5||d===6||d===0)?'cur':'prev';}
   function wkKey(sc,w){return sc.yr+'_'+w.th+'_'+w.wk;}
   function loadJ(k){try{return JSON.parse(store(k)||'null');}catch(e){return null;}}
   function saveJ(k,v){store(k,JSON.stringify(v));}
@@ -24549,6 +24543,7 @@ var KINGDOM=(function(){
     if(sc.prev)h+='<option value="prev">上週 '+sc.prev.dates+'</option>';
     if(sc.cur)h+='<option value="cur">本週 '+sc.cur.dates+'</option>';
     ws.innerHTML=h||'<option value="">沒有週次資料</option>';
+    var want=targetWhich();for(i=0;i<ws.options.length;i++)if(ws.options[i].value===want)ws.value=want;
     h='<option value="">全部老師</option>';
     for(i=0;i<sc.teachers.length;i++)h+='<option value="'+esc(sc.teachers[i].id)+'">'+esc(sc.teachers[i].name)+'</option>';
     ts.innerHTML=h;
@@ -24611,11 +24606,11 @@ var KINGDOM=(function(){
     L.push('');
     L.push('回覆格式（網頁會自動讀取，請嚴格照做）：每一份用「#代號」單獨一行開頭，例如：');
     L.push('#幼兒01');
-    L.push('判定：可通過／小修後通過／需退回修改');
+    L.push('判定：可以列印／小修後列印／需退回修改');
     L.push('【墨墨】一句話（沒問題就寫「用語沒問題」）');
     L.push('【點點】一句話');
     L.push('【暖暖】一句話');
-    L.push('建議：原句「…」→「…」；原句「…」→「…」（可通過就寫「無」）');
+    L.push('建議：原句「…」→「…」；原句「…」→「…」（可以列印就寫「無」）');
     L.push('');
     L.push('全部審完後，最後加一段：');
     L.push('#總結');
@@ -24713,7 +24708,7 @@ var KINGDOM=(function(){
   function batchCopyList(){
     if(!lastRes)return;
     var byT={},L=['【適齡適性修改清單】'+lastRes.label];
-    lastRes.rows.forEach(function(r){var k=r.k;if(!k.verdict||k.verdict.indexOf('可通過')>=0)return;
+    lastRes.rows.forEach(function(r){var k=r.k;if(!k.verdict||(k.verdict.indexOf('退回')<0&&k.verdict.indexOf('小修')<0))return;
       (byT[r.info.teacher]=byT[r.info.teacher]||[]).push('・'+r.info.name+'（'+k.verdict+'）'+(k.sugg&&k.sugg!=='無'?'：'+k.sugg:''));});
     var ts=Object.keys(byT);
     if(!ts.length){toast('這週沒有需要修改的');return;}
@@ -24753,8 +24748,8 @@ var KINGDOM=(function(){
     x=found(t,ABS);if(x.length)out.warn.push({who:'暖暖',msg:label+'用了「'+x.join('」「')+'」這種絕對的說法',fix:'改成「有時候」「目前還在練習」比較溫和'});
     return out;
   }
-  function toResult(o){
-    var verdict=o.bad.length?'需退回修改':(o.warn.length?'小修後通過':'可通過');
+  function toResult(o,kind){
+    var verdict=kind==='asr'?(o.bad.length?'需退回修改':(o.warn.length?'小修後列印':'可以列印')):(o.bad.length?'需退回修改':(o.warn.length?'小修後通過':'可通過'));
     var says=[],by={'墨墨':[],'點點':[],'暖暖':[]},i;
     for(i=0;i<o.bad.length;i++)by[o.bad[i].who].push('❌ '+o.bad[i].msg);
     for(i=0;i<o.warn.length;i++)by[o.warn[i].who].push('⚠️ '+o.warn[i].msg);
@@ -24766,8 +24761,8 @@ var KINGDOM=(function(){
   function checkAsr(d,peers){
     var o={bad:[],warn:[]},ref=plain(d.ref),i;
     if(!ref)o.bad.push({who:'點點',msg:'活動省思還沒寫',fix:'補上這週的活動省思'});
-    else if(ref.length<30)o.bad.push({who:'點點',msg:'省思只有 '+ref.length+' 個字，太短',fix:'寫出孩子這週在活動中的具體表現，至少兩三句'});
-    else if(ref.length<60)o.warn.push({who:'點點',msg:'省思 '+ref.length+' 個字，可以再具體一點',fix:'多寫一個孩子實際做到的動作或反應'});
+    else if(ref.length<20)o.bad.push({who:'點點',msg:'省思只有 '+ref.length+' 個字，太短',fix:'寫出孩子這週在活動中的具體表現，至少兩三句'});
+    else if(ref.length<40)o.warn.push({who:'點點',msg:'省思 '+ref.length+' 個字，可以再具體一點',fix:'多寫一個孩子實際做到的動作或反應'});
     var emptyA=0;for(i=0;i<(d.acts||[]).length;i++){var a=d.acts[i];if(!a||a.dom==='國定假日')continue;if(!plain(a.name)||!plain(a.ind))emptyA++;}
     if(emptyA)o.bad.push({who:'點點',msg:'有 '+emptyA+' 個活動沒寫名稱或指標',fix:'把空白的活動名稱／引導指標補齊'});
     if(ref&&peers){
@@ -24781,12 +24776,19 @@ var KINGDOM=(function(){
       if(best>=0.85)o.bad.push({who:'點點',msg:'省思跟 '+bestN+' 的幾乎一樣（相似度 '+Math.round(best*100)+'%）',fix:'每個孩子要寫自己的表現，不要整段套用'});
       else if(best>=0.7)o.warn.push({who:'點點',msg:'省思跟 '+bestN+' 很像（相似度 '+Math.round(best*100)+'%）',fix:'加一兩句只屬於這位孩子的觀察'});
     }
+    if(d.ph){
+      var noPh=[],onePh=0;
+      for(i=0;i<(d.acts||[]).length;i++){var aa=d.acts[i];if(!aa||aa.dom==='國定假日'||(!plain(aa.name)&&!plain(aa.ind)))continue;
+        var n=d.ph[i]||0;if(!n)noPh.push((i+1)+'.'+(aa.name||'（無名稱）'));else if(n<2)onePh++;}
+      if(noPh.length)o.bad.push({who:'點點',msg:'這些活動沒有照片，印出來會是空格：'+noPh.join('、'),fix:'補上活動照片再列印'});
+      if(onePh)o.warn.push({who:'點點',msg:'有 '+onePh+' 個活動只放了一張照片',fix:'每個活動放兩張照片，版面比較完整'});
+    }
     textRules('省思',d.ref,o);
     if(plain(d.par)){
       textRules('家長反饋',d.par,{bad:[],warn:[]});
       if(!/家長|爸|媽|謝謝|回饋|在家|分享/.test(ref))o.warn.push({who:'暖暖',msg:'家長有留言，但省思沒有回應到',fix:'在省思最後回應一句家長的留言'});
     }
-    return toResult(o);
+    return toResult(o,'asr');
   }
   /* 一篇教保日誌（從畫面讀） */
   function checkDiaryDom(){
@@ -24807,7 +24809,9 @@ var KINGDOM=(function(){
   }
   function checkAsrDom(){
     var acts=[],rows=document.querySelectorAll('#asrFmCard .asr-arow');
-    for(var i=0;i<rows.length;i++)acts.push({dom:val('asrDom'+i),ind:val('asrInd'+i),name:val('asrNm'+i)});
+    var ph={};
+    for(var i=0;i<rows.length;i++){acts.push({dom:val('asrDom'+i),ind:val('asrInd'+i),name:val('asrNm'+i)});
+      var a1=$('asrSla'+i),b1=$('asrSlb'+i);ph[i]=(a1&&!a1.querySelector('.pslot-ico')?1:0)+(b1&&!b1.querySelector('.pslot-ico')?1:0);}
     var peers=null;
     safe(function(){
       var sc=asrScope(),reps=asrDB.reports||{},pre=ctx.key.slice(0,ctx.key.length-String(ctx.wno).length);
@@ -24816,7 +24820,7 @@ var KINGDOM=(function(){
         peers=(sc.kids[t.id]||[]).map(function(x){var r=reps[ctx.key.split('_')[0]+'_'+ctx.themeNo+'_'+t.id+x.id+ctx.wno]||{};return {name:x.name,ref:r.reflection||''};});
       });});
     });
-    return checkAsr({name:ctx.childName,ref:val('asrRef'),par:val('asrPar'),acts:acts},peers);
+    return checkAsr({name:ctx.childName,ref:val('asrRef'),par:val('asrPar'),acts:acts,ph:ph},peers);
   }
   function showLocal(r){
     $('kgLVerdict').innerHTML='<span class="kg-verdict" style="background:'+vColor(r.verdict)+';">'+esc(r.verdict)+'</span>';
@@ -24827,11 +24831,13 @@ var KINGDOM=(function(){
     $('kgLBody').innerHTML=h;
     $('kgLocal').style.display='';
   }
-  /* 批次：整週適性記錄直接檢查 */
-  function localBatch(){
-    var sc=asrScope(),w=$('kgBWeek').value==='cur'?sc.cur:sc.prev,tf=$('kgBTeacher').value;
-    if(!w){toast('找不到週次資料');return;}
-    var reps=(typeof asrDB!=='undefined'&&asrDB.reports)||{},rows=[],empty=0;
+  /* 照片數：本機有照片就直接數；別的老師存的看雲端記下的張數（_ph）；都沒有就是不知道 */
+  function phOf(r){
+    if(r.photos&&Object.keys(r.photos).length){var o={},k;for(k in r.photos){var a=r.photos[k]||[];o[k]=(a[0]?1:0)+(a[1]?1:0);}return o;}
+    return r._ph||null;
+  }
+  function asrWeekRows(sc,w,tf){
+    var reps=(typeof asrDB!=='undefined'&&asrDB.reports)||{},rows=[],empty=0,noPhInfo=0;
     sc.teachers.forEach(function(t){
       if(tf&&t.id!==tf)return;
       var cs=sc.kids[t.id]||[];
@@ -24839,19 +24845,29 @@ var KINGDOM=(function(){
       cs.forEach(function(c){
         var r=reps[sc.yr+'_'+w.th+'_'+t.id+c.id+w.wk];
         if(!r||(!r.reflection&&!r.parentFeedback)){empty++;return;}
-        rows.push({info:{name:c.name,teacher:t.name},k:checkAsr({name:c.name,ref:r.reflection,par:r.parentFeedback,acts:r.acts},peers)});
+        var ph=phOf(r);if(!ph)noPhInfo++;
+        rows.push({info:{name:c.name,teacher:t.name},k:checkAsr({name:c.name,ref:r.reflection,par:r.parentFeedback,acts:r.acts,ph:ph},peers)});
       });
     });
+    return {rows:rows,empty:empty,noPhInfo:noPhInfo};
+  }
+  /* 批次：整週適性記錄直接檢查 */
+  function localBatch(){
+    var sc=asrScope(),w=$('kgBWeek').value==='cur'?sc.cur:sc.prev,tf=$('kgBTeacher').value;
+    if(!w){toast('找不到週次資料');return;}
+    var R=asrWeekRows(sc,w,tf),rows=R.rows;
     if(!rows.length){toast('這週還沒有已填寫的適性記錄');return;}
-    var cnt=countRows(rows);
     var common={'墨墨':0,'點點':0,'暖暖':0};
     rows.forEach(function(r){r.k.says.forEach(function(s){common[s.who]++;});});
+    var cnt=countRows(rows);
     var sum=[
       {who:'墨墨',text:common['墨墨']?'有 '+common['墨墨']+' 份在用字上要修，像負面標籤、簡體字、重複的字。':'用字都沒問題！'},
-      {who:'點點',text:common['點點']?'有 '+common['點點']+' 份內容不夠完整，像太短、跟別人幾乎一樣、名字寫錯。':'每份都寫得夠完整！'},
+      {who:'點點',text:common['點點']?'有 '+common['點點']+' 份內容或照片不夠完整，像太短、跟別人幾乎一樣、名字寫錯、缺照片。':'每份都寫得夠完整！'},
       {who:'暖暖',text:common['暖暖']?'有 '+common['暖暖']+' 份家長讀了可能會擔心，或沒回應家長留言。':'家長讀起來都很安心！'}
     ];
-    renderRes(rows,'🔍 自動檢查結果',w.dates+(empty?'・還有 '+empty+' 份沒寫':''),sum,true,'第'+w.th+'主題 第'+w.wk+'週（'+w.dates+'）');
+    if(R.noPhInfo)sum.push({who:'點點',text:'有 '+R.noPhInfo+' 份是舊資料，看不到照片張數，要打開那份才能確認照片。'});
+    renderRes(rows,'🔍 自動檢查結果',w.dates,sum,true,'第'+w.th+'主題 第'+w.wk+'週（'+w.dates+'）');
+    $('kgBSum').innerHTML='<span class="kg-chip" style="background:#e04040;">退回 '+cnt.back+'</span> <span class="kg-chip" style="background:#f2a03a;">小修 '+cnt.fix+'</span> <span class="kg-chip" style="background:#5aa878;">可以列印 '+cnt.ok+'</span>';
   }
 
   function openBatch(){
@@ -24861,6 +24877,7 @@ var KINGDOM=(function(){
   }
 
   function openHall(){
+    if(!isOwner())return;
     mode='inspect';ctx=null;
     $('kgSub').textContent='表單巡視・教保日誌／適齡適性／體溫／清潔／電訪／請假交接';
     resetView();setTags();openOv();
@@ -24902,7 +24919,7 @@ var KINGDOM=(function(){
       +'- 墨墨（用語把關）：錯字、語句不通、不恰當或帶負面標籤的說法、托育專業用語。\n'
       +'- 點點（完整把關）：每個活動的發展領域、引導指標和活動名稱是否對得上；省思有沒有具體寫到這位幼兒本週的實際表現與進步，而不是每個孩子都通用的套話；年齡層是否合理。\n'
       +'- 暖暖（家長視角）：家長讀起來的感受，哪些句子可能讓家長擔心、誤會或覺得太制式；如果有家長反饋，老師的省思有沒有回應到。\n\n'
-      +FORMAT
+      +FORMAT.replace('可通過／小修後通過','可以列印／小修後列印')
       +'=== 適齡適性記錄 ===\n'
       +'班級：'+ctx.clsLabel+'\n'
       +'幼兒：觀察幼兒（已匿名）'+(ctx.age?'，年齡層 '+ctx.age:'')+'\n'
@@ -25028,12 +25045,14 @@ var KINGDOM=(function(){
     }
   }
   function open(){
+    if(!isOwner())return;
     ctx=(typeof DIARY!=='undefined'&&DIARY.getCtx)?DIARY.getCtx():null;
     if(!ctx){alert('請先打開一篇日誌再送審');return;}
     ctx.kind='diary';ctx.storeKey='xbdKingdom_'+ctx.key;
     openReview('日誌送審・'+ctx.clsLabel+'・星期'+ctx.dow+' '+ctx.ymd+'・'+((ctx.act&&ctx.act.name)||''),'日誌');
   }
   function openAsr(){
+    if(!isOwner())return;
     ctx=(typeof ASR!=='undefined'&&ASR.getCtx)?ASR.getCtx():null;
     if(!ctx){alert('請先打開一份適齡適性記錄再送審');return;}
     ctx.kind='asr';ctx.storeKey='xbdKingdom_asr_'+ctx.key;
@@ -25075,7 +25094,7 @@ var KINGDOM=(function(){
       var b=document.createElement('button');
       b.className='kg-entry-btn';b.type='button';b.textContent='🏰 審核';
       b.addEventListener('click',open);
-      bar.appendChild(b);
+      bar.appendChild(b);_entryBtns.push(b);
     }
     var abar=document.querySelector('#asrFmOv .asr-form-bbar'),asave=$('asrFmSave');
     if(abar){
@@ -25083,13 +25102,130 @@ var KINGDOM=(function(){
       ab.type='button';ab.textContent='🏰 審核';
       ab.style.cssText='background:#5a4fa8;border:none;color:#fff;padding:5px 11px;border-radius:8px;font-size:.74rem;font-weight:700;cursor:pointer;font-family:inherit;';
       ab.addEventListener('click',openAsr);
-      if(asave)abar.insertBefore(ab,asave);else abar.appendChild(ab);
+      if(asave)abar.insertBefore(ab,asave);else abar.appendChild(ab);_entryBtns.push(ab);
+    }
+    /* 適性記錄按「列印」前，先讓市長檢查一次 */
+    var pbtn=document.querySelector('#asrFmOv .afrp');
+    if(pbtn&&typeof ASR!=='undefined'){
+      pbtn.removeAttribute('onclick');
+      pbtn.addEventListener('click',function(){
+        if(!isOwner()){ASR.pf();return;}
+        ctx=ASR.getCtx();
+        var r=ctx?safe(checkAsrDom,null):null;
+        if(!r||r.verdict==='可以列印'){if(r)toast('✓ 市長檢查通過，可以列印');ASR.pf();return;}
+        var msg='三位市長檢查後：'+r.verdict+'\n\n'+r.says.map(function(x){return x.who+'：'+x.text.replace(/[❌⚠️]/g,'').replace(/\s+/g,' ');}).join('\n')+'\n\n按「確定」打開審核看修改建議；按「取消」照樣列印。';
+        if(confirm(msg))openAsr();else ASR.pf();
+      });
     }
     var card=$('kgHomeCard');
-    if(card)card.addEventListener('click',openHall);
+    if(card){card.addEventListener('click',openHall);_entryBtns.push(card);}
+    applyRole();
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
-  return {open:open,openAsr:openAsr,openHall:openHall,openBatch:openBatch,_bparse:batchParse,_checkAsr:checkAsr,_bpayload:function(i){return batchPayload(i);},close:close,_parse:parse,_findings:function(){return findings;}};
+  return {applyRole:applyRole,open:open,openAsr:openAsr,openHall:openHall,openBatch:openBatch,_bparse:batchParse,_checkAsr:checkAsr,_bpayload:function(i){return batchPayload(i);},close:close,_parse:parse,_findings:function(){return findings;}};
+})();
+</script>
+
+<!-- ═══ 金庫造型（ES5）：入口卡片、密碼鎖、開門動畫、金庫頁面配色 ═══ -->
+<style>
+#pg-ledger.on,#pg-ledger.active{min-height:100vh;}
+#pg-ledger{background:radial-gradient(circle at 50% 18%,#4a3a1c 0,#2b2416 55%,#1d1810 100%);}
+#pg-ledger-cash,#pg-ledger-cash-detail,#pg-ledger-checkout{background:linear-gradient(180deg,#2b2416 0,#3a3020 120px,#f6f1e4 120px);}
+#pg-ledger .bbar,#pg-ledger-cash .bbar,#pg-ledger-cash-detail .bbar,#pg-ledger-checkout .bbar{background:linear-gradient(135deg,#3a2f1a,#5a4520)!important;border-color:#c9a24a!important;}
+#pg-ledger .btitle,#pg-ledger-cash .btitle,#pg-ledger-cash-detail .btitle,#pg-ledger-checkout .btitle{color:#f3d27a!important;text-shadow:0 1px 0 #2b2416;}
+#pg-ledger .bbtn,#pg-ledger-cash .bbtn,#pg-ledger-cash-detail .bbtn,#pg-ledger-checkout .bbtn{background:#2b2416!important;color:#f3d27a!important;border-color:#c9a24a!important;}
+#pg-ledger [onclick^="LEDGER.open"]{border-left-color:#c9a24a!important;background:#fffaf0!important;box-shadow:0 2px 10px rgba(201,162,74,.25)!important;}
+.vt-banner{display:flex;flex-direction:column;align-items:center;gap:6px;padding:6px 0 18px;}
+.vt-banner svg{width:120px;height:120px;filter:drop-shadow(0 6px 14px rgba(0,0,0,.45));}
+.vt-banner b{color:#f3d27a;font-size:1.05rem;letter-spacing:4px;}
+.vt-banner span{color:#cdbb8e;font-size:.72rem;}
+#pwGateOv.vt-mode .pin-box{background:linear-gradient(180deg,#3a2f1a,#2b2416);border:2px solid #c9a24a;color:#f3d27a;}
+#pwGateOv.vt-mode .pin-box h3,#pwGateOv.vt-mode .pin-box p{color:#f3d27a;}
+#pwGateOv.vt-mode .pin-inp{background:#1d1810;color:#f3d27a;border-color:#c9a24a;letter-spacing:8px;text-align:center;}
+#pwGateOv.vt-mode .pin-ok{background:linear-gradient(135deg,#c9a24a,#f3d27a);color:#2b2416;}
+#pwGateOv.vt-mode .pin-cl{color:#cdbb8e;}
+.vt-dial{display:block;width:96px;height:96px;margin:0 auto 6px;-webkit-transition:-webkit-transform .5s;transition:transform .5s;}
+#vtOpen{position:fixed;top:0;left:0;right:0;bottom:0;z-index:1000001;background:#1d1810;display:none;align-items:center;justify-content:center;-webkit-perspective:900px;perspective:900px;}
+#vtOpen.on{display:flex;}
+#vtOpen .vt-door{width:240px;height:240px;-webkit-transform-origin:0 50%;transform-origin:0 50%;}
+#vtOpen.go .vt-door{-webkit-animation:vtSwing 1s ease-in .45s forwards;animation:vtSwing 1s ease-in .45s forwards;}
+#vtOpen.go .vt-wheel{-webkit-animation:vtSpin .5s ease-out forwards;animation:vtSpin .5s ease-out forwards;-webkit-transform-origin:120px 120px;transform-origin:120px 120px;}
+#vtOpen .vt-glow{position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,#ffe9a8 0,rgba(243,210,122,.4) 40%,rgba(0,0,0,0) 70%);opacity:0;}
+#vtOpen.go .vt-glow{-webkit-animation:vtGlow 1.1s ease-in .6s forwards;animation:vtGlow 1.1s ease-in .6s forwards;}
+@-webkit-keyframes vtSpin{to{-webkit-transform:rotate(270deg);}}
+@keyframes vtSpin{to{transform:rotate(270deg);}}
+@-webkit-keyframes vtSwing{to{-webkit-transform:rotateY(-105deg);}}
+@keyframes vtSwing{to{transform:rotateY(-105deg);}}
+@-webkit-keyframes vtGlow{to{opacity:1;-webkit-transform:scale(4);}}
+@keyframes vtGlow{to{opacity:1;transform:scale(4);}}
+</style>
+<div id="vtOpen"><div class="vt-glow"></div><div class="vt-door" id="vtDoor"></div></div>
+<script>
+var VAULT=(function(){
+  /* 金庫門：外圈金邊、門栓、中間轉盤（id 給動畫用） */
+  function door(size,withId){
+    var s='<svg viewBox="0 0 240 240" width="'+size+'" height="'+size+'" xmlns="http://www.w3.org/2000/svg">';
+    s+='<rect x="6" y="6" width="228" height="228" rx="26" fill="#5a4520" stroke="#c9a24a" stroke-width="6"/>';
+    s+='<circle cx="120" cy="120" r="92" fill="#3a2f1a" stroke="#f3d27a" stroke-width="5"/>';
+    for(var i=0;i<12;i++){var a=i*Math.PI/6,x=120+80*Math.cos(a),y=120+80*Math.sin(a);s+='<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="5" fill="#c9a24a"/>';}
+    s+='<rect x="14" y="70" width="14" height="30" rx="4" fill="#c9a24a"/><rect x="14" y="140" width="14" height="30" rx="4" fill="#c9a24a"/>';
+    s+='<g'+(withId?' class="vt-wheel"':'')+'>';
+    s+='<circle cx="120" cy="120" r="40" fill="none" stroke="#f3d27a" stroke-width="7"/>';
+    for(i=0;i<3;i++){var b=i*2*Math.PI/3-Math.PI/2;s+='<line x1="120" y1="120" x2="'+(120+58*Math.cos(b)).toFixed(1)+'" y2="'+(120+58*Math.sin(b)).toFixed(1)+'" stroke="#f3d27a" stroke-width="9" stroke-linecap="round"/>';
+      s+='<circle cx="'+(120+60*Math.cos(b)).toFixed(1)+'" cy="'+(120+60*Math.sin(b)).toFixed(1)+'" r="9" fill="#f3d27a"/>';}
+    s+='<circle cx="120" cy="120" r="14" fill="#c9a24a" stroke="#2b2416" stroke-width="3"/>';
+    s+='</g></svg>';
+    return s;
+  }
+  function playOpen(cb){
+    var ov=document.getElementById('vtOpen');
+    document.getElementById('vtDoor').innerHTML=door(240,true);
+    ov.className='on';
+    setTimeout(function(){ov.className='on go';},30);
+    setTimeout(function(){ov.className='';if(cb)cb();},1650);
+  }
+  function init(){
+    /* 會計裡的入口卡片 */
+    var card=document.getElementById('accountingCardLedger');
+    if(card){
+      var ic=card.querySelector('span');if(ic){ic.innerHTML=door(40,false);ic.style.fontSize='0';ic.style.lineHeight='0';}
+      card.style.borderLeftColor='#c9a24a';card.style.background='linear-gradient(135deg,#fffaf0,#fff3d6)';
+      var t=card.querySelector('div div');if(t){t.style.color='#8a6414';t.innerHTML='🔐 金庫';}
+    }
+    /* 金庫首頁上方放一扇金庫門 */
+    var pg=document.getElementById('pg-ledger');
+    if(pg){var wrap=pg.querySelector('.bbar').nextElementSibling;
+      if(wrap){var bn=document.createElement('div');bn.className='vt-banner';
+        bn.innerHTML=door(120,false)+'<b>金　庫</b><span>只有園長可以進入</span>';
+        wrap.insertBefore(bn,wrap.firstChild);
+        var lbl=wrap.querySelector('div[style*="請選擇"]')||null;
+        var kids=wrap.children;for(var i=0;i<kids.length;i++){if(kids[i].textContent==='請選擇項目'){kids[i].style.color='#cdbb8e';kids[i].textContent='請選擇要打開的保險箱';}}
+      }
+    }
+    /* 密碼關卡：金庫用專屬的轉盤樣式，密碼對了先播開門動畫再進去 */
+    if(typeof PWGATE!=='undefined'){
+      var _prompt=PWGATE.prompt,_cancel=PWGATE.cancel;
+      PWGATE.prompt=function(key,title,pin,onOk){
+        var ov=document.getElementById('pwGateOv'),h=ov.querySelector('h3'),p=ov.querySelector('p');
+        if(key==='ledger'){
+          ov.className='pin-ov vt-mode';
+          if(!h.getAttribute('data-orig'))h.setAttribute('data-orig',h.innerHTML);
+          if(p&&!p.getAttribute('data-orig'))p.setAttribute('data-orig',p.innerHTML);
+          h.innerHTML='<span class="vt-dial">'+door(96,false)+'</span><span id="pwGateTitle">金庫</span>';
+          if(p)p.textContent='請輸入金庫密碼';
+          _prompt.call(PWGATE,key,'金庫',pin,function(){playOpen(onOk);});
+        }else{
+          ov.className='pin-ov';
+          if(h.getAttribute('data-orig'))h.innerHTML=h.getAttribute('data-orig');
+          if(p&&p.getAttribute('data-orig'))p.innerHTML=p.getAttribute('data-orig');
+          _prompt.call(PWGATE,key,title,pin,onOk);
+        }
+      };
+      PWGATE.cancel=function(){document.getElementById('pwGateOv').className='pin-ov';_cancel.call(PWGATE);};
+    }
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+  return {playOpen:playOpen};
 })();
 </script>
 
